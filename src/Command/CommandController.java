@@ -7,7 +7,7 @@ import java.util.Observer;
 
 public class CommandController implements Observer{
 	
-	protected ArrayList<ICommand> commandsList;
+	protected ArrayList<ICommand> commandsList; 
 	protected boolean autoRun;
 	protected File selectedElement;
 	
@@ -42,6 +42,7 @@ public class CommandController implements Observer{
 		return this.selectedElement;
 	}
 	
+	//It will be notified if a new element is selected in SelectionController
 	@Override
 	public void update(Observable o, Object selectedElement) {
 		if (selectedElement instanceof File){

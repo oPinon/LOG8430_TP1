@@ -7,6 +7,7 @@ import java.util.Observable;
 public class SelectionController extends Observable {
 
 	protected String rootPath;
+	//The selected Element could be a file or folder, normally
 	protected File selectedElement;
 		
 	public void setRootPath(String path){
