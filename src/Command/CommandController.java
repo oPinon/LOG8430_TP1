@@ -13,19 +13,19 @@ public class CommandController implements Observer{
 	protected boolean autoRun;
 	protected SelectionController selectionController;
 	
-	CommandController(){
+	public CommandController(){
 		this.commandsList = new ArrayList<ICommand>();
 		this.commandsList.add(new PrintFileNameCommand());
 		this.commandsList.add(new PrintFolderNameCommand());
 		this.commandsList.add(new PrintPathCommand());
 	}
 	
-	public void addCommand(ICommand command){
-		this.commandsList.add(command);
+	public boolean addCommand(ICommand command){
+		return this.commandsList.add(command);
 	}
 	
-	public void removeCommand(ICommand command){
-		this.commandsList.remove(command);
+	public boolean removeCommand(ICommand command){
+		return this.commandsList.remove(command);
 	}
 	
 	public void setAutoRun(boolean flag){

@@ -12,10 +12,14 @@ public class SelectionController extends Observable {
 	public void setRootPath(String path){
 		this.rootPath = path;
 		//when set the root path, we need to reset the selected element
-		this.setSelectedFile(path);
+		this.setSelectedElement(path);
 	}
 	
-	public void setSelectedFile(String path){
+	public File getSelectedElement(){
+		return this.selectedElement;
+	}
+	
+	public void setSelectedElement(String path){
 		this.selectedElement = new File(path);
 		notifyObservers(this.selectedElement);
 	}
