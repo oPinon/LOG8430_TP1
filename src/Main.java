@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 
 import javafx.application.Application;
@@ -11,14 +12,13 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
 public class Main extends Application {
 
-	ArrayList<ICommand> commands;
+	//ArrayList<ICommand> commands;
 	//INode fileTree;
 	
 	public static void main(String[] args) {
@@ -37,14 +37,15 @@ public class Main extends Application {
 		HBox root = new HBox(); // divides the window between the fileExplorer and the commands' list
 		Scene scene = new Scene(root,800,600);
 		
+		FileFolder rootFile = new FileFolder(new File("/"));
+		rootFile.open();
 		VBox fileExplorer = new VBox(); // contains the fileTree and the 'selectFile' button
 		fileExplorer.prefWidthProperty().bind(scene.widthProperty().divide(2f)); // will be half of the total window
 		{
-			VBox fileTreeView = new VBox(); // display the tree of files
+			VBox fileTreeView = rootFile.getView(); // display the tree of files
 			ScrollPane fileTreeScrollPane = new ScrollPane(fileTreeView); // it will be inside a scroll pane
 			fileTreeScrollPane.setFitToWidth(true); fileTreeScrollPane.setFitToHeight(true);
 			VBox.setVgrow(fileTreeScrollPane, Priority.ALWAYS); // makes sure the pane enlarges as much as possible
-			fileTreeView.setStyle("-fx-background-color:lightgrey; -fx-border-width:3; -fx-border-color:grey");
 			fileTreeView.setFillWidth(true);
 			
 			Button fileButton = new Button("Select a file or folder");
