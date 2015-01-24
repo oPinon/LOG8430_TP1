@@ -2,24 +2,23 @@ package Command;
 
 import java.io.File;
 
-import Selection.IElement;
-import Selection.SelectionController;
-
-public class PrintFolderNameCommand implements ICommand {
-
+public class PrintFolderNameCommand extends Command {
+	
 	@Override
-	public void visit(IElement element) {
-		throw new IllegalStateException(element.getClass().getName());		
+	public void setEnable(File f) {
+		if (f.isDirectory())
+			this.enable = true;
+		
 	}
 
 	@Override
-	public Object visit(SelectionController selectionController) {
-
-		File f = new File(selectionController.getSelectedPath());
+	public Object execute(File f) {
 		
-		if (f.isDirectory() == true)
+		if (f.isDirectory() && this.enable)
 			return "Folder Name is: " + f.getName();
 		else
-			return "Cannot get folder name";
+			return "Error";
+		
 	}
+
 }

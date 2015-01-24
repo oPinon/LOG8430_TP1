@@ -2,25 +2,22 @@ package Command;
 
 import java.io.File;
 
-import Selection.IElement;
-import Selection.SelectionController;
-
-public class PrintPathCommand implements ICommand {
+public class PrintPathCommand extends Command {
 
 	@Override
-	public void visit(IElement element) {
-		throw new IllegalStateException(element.getClass().getName());		
+	public void setEnable(File f) {
+		if (f.isDirectory() || f.isFile())
+			this.enable = true;
+		
 	}
 
 	@Override
-	public Object visit(SelectionController selectionController) {
-
-		File f = new File(selectionController.getSelectedPath());
+	public Object execute(File f) {
 		
-		if (f.exists() == true)
+		if (this.enable && (f.isFile() || f.isDirectory()))
 			return f.getAbsolutePath();
 		else
-			return "Cannot get absolute path";
+			return "Error";
 		
 	}
 

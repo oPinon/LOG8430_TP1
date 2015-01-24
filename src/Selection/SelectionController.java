@@ -1,33 +1,23 @@
 package Selection;
 
+import java.io.File;
 import java.util.Observable;
 
-import Command.IVisitor;
 
-public class SelectionController extends Observable implements IElement{
+public class SelectionController extends Observable {
 
 	protected String rootPath;
-	protected String selectedPath;
+	protected File selectedElement;
 		
 	public void setRootPath(String path){
 		this.rootPath = path;
+		//when set the root path, we need to reset the selected element
+		this.setSelectedFile(path);
 	}
 	
-	public String getRootPath(){
-		return this.rootPath;
-	}
-	
-	public void setSelectedPath(String path){
-		this.selectedPath = path;
-	}
-	
-	public String getSelectedPath(){
-		return this.selectedPath;
-	}
-	
-	@Override
-	public Object accept(IVisitor visitor) {
-		return visitor.visit(this);
+	public void setSelectedFile(String path){
+		this.selectedElement = new File(path);
+		notifyObservers(this.selectedElement);
 	}
 
 }
