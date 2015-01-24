@@ -15,8 +15,7 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		
-		//Main main = new Main();
-		//main.launch(args);
+		Main.launch(args);
 		
 		ArrayList<ICommand> commands = new ArrayList<ICommand>();
 		commands.add(new VoidCommand());
