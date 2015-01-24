@@ -10,9 +10,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import Command.PrintFileNameCommand;
+import Command.PrintFolderNameCommand;
 import Selection.SelectionController;
 
-public class PrintFileNameCommandTest {
+public class PrintFolderNameCommandTest {
 
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	
@@ -25,12 +26,12 @@ public class PrintFileNameCommandTest {
 	@Test
 	public void test() {
 		SelectionController s = new SelectionController();
-		s.setSelectedPath(System.getProperty("user.dir") + "/src/test/PrintFileNameCommandTest.java");
-		PrintFileNameCommand c = new PrintFileNameCommand();
+		s.setSelectedPath(System.getProperty("user.dir") + "/src/test/");
+		PrintFolderNameCommand c = new PrintFolderNameCommand();
 		
 		s.accept(c);
 		
-		assertEquals("File Name is: PrintFileNameCommandTest.java\n", outContent.toString());
+		assertEquals("Folder Name is: test\n", outContent.toString());
 		
 	}
 	
