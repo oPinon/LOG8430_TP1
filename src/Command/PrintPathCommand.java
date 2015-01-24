@@ -13,20 +13,15 @@ public class PrintPathCommand implements ICommand {
 	}
 
 	@Override
-	public void visit(SelectionController selectionController) {
+	public Object visit(SelectionController selectionController) {
 
 		File f = new File(selectionController.getSelectedPath());
 		
+		if (f.exists() == true)
+			return f.getAbsolutePath();
+		else
+			return "Cannot get absolute path";
 		
-		try {
-			if (f.exists() == false){
-				throw new Exception("Path doesn't exists");
-			} else {
-				System.out.println(f.getAbsolutePath());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }

@@ -13,23 +13,14 @@ public class PrintFileNameCommand implements ICommand {
 	}
 
 	@Override
-	public void visit(SelectionController selectionController) {
+	public Object visit(SelectionController selectionController) {
 		
 		File f = new File(selectionController.getSelectedPath());
 		
-			
-		try {
-			if (f.exists() == false){
-				throw new Exception("File doesn't exists");
-			} else if (f.isFile() == false){
-				throw new Exception("The path doesn't point to a file");
-			} else {
-				System.out.println("File Name is: " + f.getName());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		if (f.isFile() == true)
+			return "File Name is: " + f.getName();
+		else
+			return "Cannot get file name";
 
 	}
-
 }

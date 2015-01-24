@@ -15,29 +15,14 @@ import Selection.SelectionController;
 
 public class PrintPathCommandTest {
 
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	
-	@Before
-	public void setUpStreams() {
-	    System.setOut(new PrintStream(outContent));
-	}
-
-	
 	@Test
 	public void test() {
 		SelectionController s = new SelectionController();
 		s.setSelectedPath(System.getProperty("user.dir") + "/src/test/");
 		PrintPathCommand c = new PrintPathCommand();
+				
+		assertEquals(System.getProperty("user.dir") + "/src/test", s.accept(c));
 		
-		s.accept(c);
-		
-		assertEquals(System.getProperty("user.dir") + "/src/test\n", outContent.toString());
-		
-	}
-	
-	@After
-	public void cleanUpStreams() {
-	    System.setOut(null);
 	}
 
 }

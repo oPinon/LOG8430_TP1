@@ -9,9 +9,9 @@ public class CommandController implements Observer{
 	protected ArrayList<ICommand> commandsList;
 	
 	CommandController(){
-		//this.commandsList.add(new PrintFileNameCommand());
-		//this.commandsList.add(new PrintFolderNameCommand());
-		//this.commandsList.add(new PrintPathCommand());
+		this.commandsList.add(new PrintFileNameCommand());
+		this.commandsList.add(new PrintFolderNameCommand());
+		this.commandsList.add(new PrintPathCommand());
 	}
 	
 	public void addCommand(ICommand command){
