@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	ArrayList<ICommand> commands;
-	INode fileTree;
+	//INode fileTree;
 	
 	public static void main(String[] args) {
 		
