@@ -1,6 +1,7 @@
 import java.io.File;
 import java.util.ArrayList;
 
+import Selection.FileTreeView;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -37,7 +38,7 @@ public class Main extends Application {
 		HBox root = new HBox(); // divides the window between the fileExplorer and the commands' list
 		Scene scene = new Scene(root,800,600);
 		
-		FileFolder rootFile = new FileFolder(new File("/"));
+		FileTreeView rootFile = new FileTreeView(new File("/"));
 		rootFile.open();
 		VBox fileExplorer = new VBox(); // contains the fileTree and the 'selectFile' button
 		fileExplorer.prefWidthProperty().bind(scene.widthProperty().divide(2f)); // will be half of the total window
