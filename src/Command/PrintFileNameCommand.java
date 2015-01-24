@@ -15,7 +15,7 @@ public class PrintFileNameCommand extends Command {
 	@Override
 	public Object execute(File f) {
 		
-		if (f.isFile() && this.enable)
+		if (f.isFile())
 			return "File Name is: " + f.getName();
 		else
 			return "Error";

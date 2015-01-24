@@ -14,7 +14,7 @@ public class PrintFolderNameCommand extends Command {
 	@Override
 	public Object execute(File f) {
 		
-		if (f.isDirectory() && this.enable)
+		if (f.isDirectory())
 			return "Folder Name is: " + f.getName();
 		else
 			return "Error";

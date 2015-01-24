@@ -14,7 +14,7 @@ public class PrintPathCommand extends Command {
 	@Override
 	public Object execute(File f) {
 		
-		if (this.enable && (f.isFile() || f.isDirectory()))
+		if (f.isFile() || f.isDirectory())
 			return f.getAbsolutePath();
 		else
 			return "Error";
