@@ -21,6 +21,7 @@ public class SelectionController extends Observable {
 	
 	public void setSelectedElement(String path){
 		this.selectedElement = new File(path);
+		this.setChanged();
 		notifyObservers(this.selectedElement);
 	}
 
