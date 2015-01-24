@@ -2,7 +2,7 @@ package Command;
 
 import Selection.IElement;
 
-public class Command1 implements ICommand {
+public class PrintPathCommand implements ICommand {
 
 	@Override
 	public void visit(IElement element) {
