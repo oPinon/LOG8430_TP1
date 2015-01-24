@@ -1,29 +1,28 @@
 package Selection;
 
-import java.nio.file.Path;
 import java.util.Observable;
 
 import Command.IVisitor;
 
 public class SelectionController extends Observable implements IElement{
 
-	protected Path rootPath;
-	protected Path elementPath;
+	protected String rootPath;
+	protected String selectedPath;
 		
-	public void setRootPath(Path path){
+	public void setRootPath(String path){
 		this.rootPath = path;
 	}
 	
-	public Path getRootPath(){
+	public String getRootPath(){
 		return this.rootPath;
 	}
 	
-	public void setElementPath(Path path){
-		this.rootPath = path;
+	public void setSelectedPath(String path){
+		this.selectedPath = path;
 	}
 	
-	public Path getElementPath(){
-		return this.rootPath;
+	public String getSelectedPath(){
+		return this.selectedPath;
 	}
 	
 	@Override
