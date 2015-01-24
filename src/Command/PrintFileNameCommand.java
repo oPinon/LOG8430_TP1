@@ -24,7 +24,7 @@ public class PrintFileNameCommand implements ICommand {
 			} else if (f.isFile() == false){
 				throw new Exception("The path doesn't point to a file");
 			} else {
-				System.out.println("File Name is" + f.getName());
+				System.out.println("File Name is: " + f.getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

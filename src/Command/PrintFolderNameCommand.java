@@ -24,7 +24,7 @@ public class PrintFolderNameCommand implements ICommand {
 			} else if (f.isDirectory() == false){
 				throw new Exception("The path doesn't point to a folder");
 			} else {
-				System.out.println("Folder Name is" + f.getName());
+				System.out.println("Folder Name is: " + f.getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
