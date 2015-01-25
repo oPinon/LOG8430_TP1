@@ -7,7 +7,7 @@ import java.util.Observable;
 public class Model extends Observable{
 	private String rootPath;
 	private File selectedElement;
-	private ArrayList<String> outputs;
+	//private ArrayList<String> outputs;
 	
 	public void setRootPath(String path){
 		this.rootPath = path;
@@ -30,8 +30,8 @@ public class Model extends Observable{
 	}
 	
 	public void cleanOutputs(){
-		this.outputs.clear();
+		//this.outputs.clear();
 		this.setChanged();
-		notifyObservers();
+		notifyObservers("clean");
 	}
 }

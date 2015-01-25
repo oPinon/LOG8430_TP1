@@ -33,6 +33,10 @@ public class Controller {
 		return this.autoRun;
 	}
 	
+	public Model getModel(){
+		return Controller.model;
+	}
+	
 	public View getView(){
 		return this.view;
 	}
@@ -58,11 +62,13 @@ public class Controller {
 			command.setEnable(file);
 		}
 		
+		/*
 		if(this.autoRun){
 			for(ICommand command : this.commandsList){
+				
 				System.out.println(command.execute(file));
 			}
-		}
+		}*/
 	}
 	
 	public File getSelectedElement(){
