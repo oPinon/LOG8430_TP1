@@ -18,7 +18,7 @@ public class CommandController implements Observer{
 		this.commandsList.add(new PrintFolderNameCommand());
 		this.commandsList.add(new PrintPathCommand());
 		
-		this.commandView = new CommandView(this.commandsList);
+		this.commandView = new CommandView(this.commandsList, this);
 	}
 	
 	public CommandView getCommandView(){
@@ -55,14 +55,16 @@ public class CommandController implements Observer{
 		if (selectedElement instanceof File){
 			
 			this.selectedElement = (File)selectedElement;
+			System.out.println("CommandController get the selected element " + this.selectedElement.getName());
+			System.out.println("In commandController, the autorun is " + this.autoRun);
 			
 			for(ICommand c : this.commandsList){
 				c.setEnable((File)selectedElement);
 			}
 			
-			if(autoRun){
+			if(this.autoRun){
 				for(ICommand c : this.commandsList){
-					c.execute((File)selectedElement);
+					System.out.println(c.execute((File)selectedElement));
 				}
 			}
 			

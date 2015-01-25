@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-
-
 	
 	public static void main(String[] args) {
 		
@@ -20,8 +18,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		
-		
 		SelectionController s = new SelectionController();
 		CommandController c = new CommandController();
 		s.addObserver(c);

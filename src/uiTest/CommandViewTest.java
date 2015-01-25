@@ -27,7 +27,7 @@ public class CommandViewTest extends Application {
 		commandsList.add(new PrintFolderNameCommand());
 		commandsList.add(new PrintPathCommand());
     	
-    	VBox view = new CommandView(commandsList);
+    	VBox view = new CommandView(commandsList, null);
     	
 		Scene scene = new Scene(view,800,600);
 		

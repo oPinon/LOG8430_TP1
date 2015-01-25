@@ -18,10 +18,12 @@ public class SingleFileView extends HBox{
 	boolean isOpened;
 	boolean isSelected;
 	FileView parent;
+	SelectionController selectionController;
 	
-	public SingleFileView(File _file, FileView _parent) {
+	public SingleFileView(File _file, FileView _parent, SelectionController selectionController) {
 		
 		this.parent = _parent;
+		this.selectionController = selectionController;
 		
 		// Set the open Button
 		// need to add a function to notify the view to update when open/close
@@ -55,12 +57,15 @@ public class SingleFileView extends HBox{
 		
 		//set the selectButton
 		//need to add a event handler to notify the controller which file is selected
+		SingleFileView self = this;
 		Button selectButton = new Button(_file.getName());
 		selectButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				//need to be implemented
-				System.out.println("SelectButton is pressed");
+				System.out.println(_file.getName()+"'s SelectButton is pressed");
+				self.selectionController.setSelectedElement(_file.getAbsolutePath());
+				
 			}
 		});
 		

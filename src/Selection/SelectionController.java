@@ -13,7 +13,7 @@ public class SelectionController extends Observable {
 	protected SelectionView selectionView;
 	
 	public SelectionController(){
-		this.selectionView = new SelectionView(new File("/"));
+		this.selectionView = new SelectionView(new File("/"), this);
 	}
 	
 	public SelectionView getSelectionView(){
@@ -35,6 +35,7 @@ public class SelectionController extends Observable {
 	
 	public void setSelectedElement(String path){
 		this.selectedElement = new File(path);
+		System.out.println(this.selectedElement.getName() + " is the seletcted element");
 		this.setChanged();
 		notifyObservers(this.selectedElement);
 	}

@@ -9,12 +9,14 @@ import javafx.scene.text.Text;
 public class FileView extends VBox{
 	
 	File file;
+	SelectionController selectionController;
 			
-	public FileView(File _file) {
+	public FileView(File _file, SelectionController selectionController) {
 		
 		this.file = _file;
+		this.selectionController = selectionController;
 				
-		SingleFileView selfView = new SingleFileView(_file, this);
+		SingleFileView selfView = new SingleFileView(_file, this, this.selectionController);
 		this.getChildren().addAll(selfView);
 		
 		/*if (_file.isDirectory() && selfView.isOpened){
@@ -33,7 +35,7 @@ public class FileView extends VBox{
 		
 		if (singleFileView.isOpened){
 			for(File f : this.file.listFiles()) {
-				HBox intentedFileView = new HBox(new Text("    "),new FileView(f));
+				HBox intentedFileView = new HBox(new Text("    "),new FileView(f, this.selectionController));
 				this.getChildren().add(intentedFileView);
 				//this.getChildren().add(new FileView(f));	
 			}

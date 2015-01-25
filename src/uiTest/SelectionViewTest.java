@@ -18,7 +18,7 @@ public class SelectionViewTest extends Application{
 	
     public void start(Stage stage) {
     	
-    	VBox view = new SelectionView(new File(System.getProperty("user.dir")));
+    	VBox view = new SelectionView(new File(System.getProperty("user.dir")), null);
     	
 		Scene scene = new Scene(view,800,600);
 		
