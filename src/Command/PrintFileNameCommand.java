@@ -2,9 +2,13 @@ package Command;
 
 import java.io.File;
 
-
 public class PrintFileNameCommand extends Command {
-
+	
+	@Override
+	public String getName() {
+		return "PrintFileNameCommand";
+	}
+	
 	@Override
 	public void setEnable(File f) {
 		if (f.isFile())

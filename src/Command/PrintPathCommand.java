@@ -5,6 +5,11 @@ import java.io.File;
 public class PrintPathCommand extends Command {
 
 	@Override
+	public String getName() {
+		return "PrintPathCommand";
+	}
+		
+	@Override
 	public void setEnable(File f) {
 		if (f.isDirectory() || f.isFile())
 			this.enable = true;

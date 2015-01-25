@@ -56,6 +56,13 @@ public class SingleFileView extends HBox{
 		//set the selectButton
 		//need to add a event handler to notify the controller which file is selected
 		Button selectButton = new Button(_file.getName());
+		selectButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				//need to be implemented
+				System.out.println("SelectButton is pressed");
+			}
+		});
 		
 		//combine the three button to this
 		this.getChildren().addAll(openButton, typeIcon,selectButton);

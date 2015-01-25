@@ -10,12 +10,19 @@ public class CommandController implements Observer{
 	protected ArrayList<ICommand> commandsList; 
 	protected boolean autoRun;
 	protected File selectedElement;
+	protected CommandView commandView;
 	
 	public CommandController(){
 		this.commandsList = new ArrayList<ICommand>();
 		this.commandsList.add(new PrintFileNameCommand());
 		this.commandsList.add(new PrintFolderNameCommand());
 		this.commandsList.add(new PrintPathCommand());
+		
+		this.commandView = new CommandView(this.commandsList);
+	}
+	
+	public CommandView getCommandView(){
+		return this.commandView;
 	}
 	
 	public boolean addCommand(ICommand command){

@@ -9,11 +9,24 @@ public class SelectionController extends Observable {
 	protected String rootPath;
 	//The selected Element could be a file or folder, normally
 	protected File selectedElement;
+	
+	protected SelectionView selectionView;
+	
+	public SelectionController(){
+		this.selectionView = new SelectionView(new File("/"));
+	}
+	
+	public SelectionView getSelectionView(){
+		return this.selectionView;
+	}
+	
 		
 	public void setRootPath(String path){
 		this.rootPath = path;
 		//when set the root path, we need to reset the selected element
 		this.setSelectedElement(path);
+		//update the view
+		this.selectionView.update(new File(path));
 	}
 	
 	public File getSelectedElement(){
