@@ -6,12 +6,18 @@ import java.util.Observable;
 public class Model extends Observable{
 	private String rootPath;
 	private File selectedElement;
-	//private ArrayList<String> outputs;
+	private final static Model INSTANCE = new Model();
+	
+	//Singleton
+	private Model(){}
+	
+    // default public constructor
+    public static Model getInstance() {
+        return INSTANCE;
+    }
 	
 	public void setRootPath(String path){
 		this.rootPath = path;
-		//this.setChanged();
-		//notifyObservers("rootChanged");
 	}
 	
 	public String getRootPath(){
@@ -28,10 +34,5 @@ public class Model extends Observable{
 		this.setChanged();
 		notifyObservers("elementSelected");
 	}
-	
-	public void cleanOutputs(){
-		//this.outputs.clear();
-		this.setChanged();
-		notifyObservers("clean");
-	}
+
 }

@@ -20,7 +20,7 @@ public class Controller {
 		this.commandsList.add(new PrintFolderNameCommand());
 		this.commandsList.add(new PrintPathCommand());
 		
-		Controller.model = new Model();
+		Controller.model = Model.getInstance();
 		this.setRootPath(rootPath);
 		this.view = new View(this);
 	}

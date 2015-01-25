@@ -8,6 +8,7 @@ import Application.Controller;
 import Command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -64,7 +65,14 @@ public class CommandView extends VBox{
 		clearButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
-				self.controller.getModel().cleanOutputs();
+				
+				CommandView commandView = (CommandView) self.controller.getView().getChildren().get(1);
+				VBox commandsPart1 = (VBox) commandView.getChildren().get(0);
+				for (Node n: commandsPart1.getChildren()){
+					SingleCommandView s = (SingleCommandView)n;
+					TextField t = (TextField)s.getChildren().get(1);
+					t.setText("");
+				}
 			}
 		});
 		
@@ -98,10 +106,6 @@ public class CommandView extends VBox{
 			if(this.controller.getAutoRun() && (String)arg=="elementSelected"){
 				((TextField)this.getChildren().get(1)).setText("");
 				this.getChildren().get(0).fireEvent(new ActionEvent());
-			}
-			
-			if((String)arg == "clean"){
-				((TextField)this.getChildren().get(1)).setText("");
 			}
 		}
 		
