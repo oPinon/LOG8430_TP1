@@ -1,17 +1,17 @@
-package test;
+package test.Unit;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import Command.Command;
-import Command.CommandController;
+import Command.CommandController.Controller;
 
 public class CommandControllerTest {
 
 	@Test
 	public void autoRunFlagtest() {
-		CommandController c = new CommandController();
+		Controller c = new Controller();
 		c.setAutoRun(true);
 		assertEquals(true, c.getAutoRun());
 		c.setAutoRun(false);
@@ -20,7 +20,7 @@ public class CommandControllerTest {
 	
 	@Test
 	public void addAndRemoveCommandTest(){
-		CommandController c = new CommandController();
+		Controller c = new Controller();
 		Command command = new Command();
 		c.addCommand(command);
 		assert(c.removeCommand(command));

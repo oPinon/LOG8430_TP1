@@ -1,4 +1,4 @@
-package uiTest;
+package test.UI;
 
 import java.io.File;
 
@@ -6,7 +6,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Selection.SelectionView;
+import Application.SubViews.SelectionView;
 
 public class SelectionViewTest extends Application{
 

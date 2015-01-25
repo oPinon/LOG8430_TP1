@@ -1,18 +1,24 @@
-package Command;
+package Command.CommandController;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class CommandController implements Observer{
+import Application.SubViews.CommandView;
+import Command.ICommand;
+import Command.PrintFileNameCommand;
+import Command.PrintFolderNameCommand;
+import Command.PrintPathCommand;
+
+public class Controller implements Observer{
 	
 	protected ArrayList<ICommand> commandsList; 
 	protected boolean autoRun;
 	protected File selectedElement;
 	protected CommandView commandView;
 	
-	public CommandController(){
+	public Controller(){
 		this.commandsList = new ArrayList<ICommand>();
 		this.commandsList.add(new PrintFileNameCommand());
 		this.commandsList.add(new PrintFolderNameCommand());

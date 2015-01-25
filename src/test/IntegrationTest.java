@@ -1,21 +1,17 @@
 package test;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-
 import org.junit.Test;
 
-import Command.CommandController;
 import Command.ICommand;
-import Selection.SelectionController;
+import Command.CommandController.Controller;
+import Selection.SelectionController.SelectionController;
 
 public class IntegrationTest {
 
 	@Test
 	public void test() {
 		SelectionController s = new SelectionController();
-		CommandController c = new CommandController();
+		Controller c = new Controller();
 		s.addObserver(c);
 		
 		s.setRootPath(System.getProperty("user.dir") + "/src");

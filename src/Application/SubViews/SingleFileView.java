@@ -1,7 +1,8 @@
-package Selection;
+package Application.SubViews;
 
 import java.io.File;
 
+import Application.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -18,17 +19,19 @@ public class SingleFileView extends HBox{
 	boolean isOpened;
 	boolean isSelected;
 	FileView parent;
-	SelectionController selectionController;
+	Controller controller;
 	
-	public SingleFileView(File _file, FileView _parent, SelectionController selectionController) {
+	public SingleFileView(Controller _controller, FileView _parent) {
 		
 		this.parent = _parent;
-		this.selectionController = selectionController;
+		this.controller = _controller;
 		
 		// Set the open Button
 		// need to add a function to notify the view to update when open/close
 		Button openButton = null;
-		if(_file.isDirectory()){
+		
+		File f = _parent.file;
+		if(f.isDirectory()){
 			openButton = new Button("+");
 						
 			SingleFileView self = this;
@@ -48,23 +51,23 @@ public class SingleFileView extends HBox{
 					}
 				}
 			});
-		} else if (_file.isFile()){
+		} else if (f.isFile()){
 			openButton = new Button(" "); //in fact, this is not a button, need to be changed after;
 		}
 		
 		//set the ImageView
-		ImageView typeIcon = new ImageView(_file.isDirectory()? (isOpened?folderOpenedIcon:folderClosedIcon):fileIcon );
+		ImageView typeIcon = new ImageView(f.isDirectory()? (isOpened?folderOpenedIcon:folderClosedIcon):fileIcon );
 		
 		//set the selectButton
 		//need to add a event handler to notify the controller which file is selected
 		SingleFileView self = this;
-		Button selectButton = new Button(_file.getName());
+		Button selectButton = new Button(f.getName());
 		selectButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
 				//need to be implemented
-				System.out.println(_file.getName()+"'s SelectButton is pressed");
-				self.selectionController.setSelectedElement(_file.getAbsolutePath());
+				System.out.println(f.getName()+"'s SelectButton is pressed");
+				self.controller.setSelectedElement(f.getAbsolutePath());
 				
 			}
 		});

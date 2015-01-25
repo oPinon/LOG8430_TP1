@@ -1,4 +1,4 @@
-package uiTest;
+package test.UI;
 
 
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import Command.CommandView;
+import Application.SubViews.CommandView;
 import Command.ICommand;
 import Command.PrintFileNameCommand;
 import Command.PrintFolderNameCommand;

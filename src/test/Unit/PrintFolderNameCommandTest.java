@@ -1,4 +1,4 @@
-package test;
+package test.Unit;
 
 import static org.junit.Assert.*;
 
@@ -7,30 +7,29 @@ import java.io.File;
 import org.junit.Test;
 
 import Command.Command;
-import Command.PrintFileNameCommand;
+import Command.PrintFolderNameCommand;
 
-public class PrintFileNameCommandTest {
+public class PrintFolderNameCommandTest {
 
 	@Test
 	public void testSetEnable() {
 		File eFile = new File(System.getProperty("user.dir") + "/src/Main.java");
-		Command c = new PrintFileNameCommand();
+		Command c = new PrintFolderNameCommand();
 		c.setEnable(eFile);
-		assert(c.isEnable());
+		assert(!c.isEnable());
 		
 		File eFolder = new File(System.getProperty("user.dir") + "/src");
 		c.setEnable(eFolder);
-		assert(!c.isEnable());
+		assert(c.isEnable());
 	}
 	
 	@Test
 	public void testExecute(){
 		File eFile = new File(System.getProperty("user.dir") + "/src/Main.java");
-		Command c = new PrintFileNameCommand();
-		assertEquals(c.execute(eFile), "File Name is: Main.java");
+		Command c = new PrintFolderNameCommand();
+		assertEquals(c.execute(eFile), "Error");
 		
 		File eFolder = new File(System.getProperty("user.dir") + "/src");
-		assertEquals(c.execute(eFolder), "Error");
+		assertEquals(c.execute(eFolder), "Folder Name is: src");
 	}
-
 }

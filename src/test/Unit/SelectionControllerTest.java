@@ -1,4 +1,4 @@
-package test;
+package test.Unit;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import java.io.File;
 
 import org.junit.Test;
 
-import Selection.SelectionController;
+import Selection.SelectionController.SelectionController;
 
 public class SelectionControllerTest {
 

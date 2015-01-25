@@ -1,7 +1,9 @@
-package Selection;
+package Selection.SelectionController;
 
 import java.io.File;
 import java.util.Observable;
+
+import Application.SubViews.SelectionView;
 
 
 public class SelectionController extends Observable {
