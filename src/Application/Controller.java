@@ -21,7 +21,7 @@ public class Controller {
 		this.commandsList.add(new PrintPathCommand());
 		
 		Controller.model = new Model();
-		Controller.model.setRootPath(rootPath);
+		this.setRootPath(rootPath);
 		this.view = new View(this);
 	}
 	
@@ -47,6 +47,7 @@ public class Controller {
 	
 	public void setRootPath(String path){
 		Controller.model.setRootPath(path);
+		this.setSelectedElement(path);
 	}
 	
 	public String getRootPath(){
@@ -56,19 +57,10 @@ public class Controller {
 	public void setSelectedElement(String path){
 		File file = new File(path);
 		
-		Controller.model.setSelectedElement(file);
-		
 		for(ICommand command : this.commandsList){
 			command.setEnable(file);
 		}
-		
-		/*
-		if(this.autoRun){
-			for(ICommand command : this.commandsList){
-				
-				System.out.println(command.execute(file));
-			}
-		}*/
+		Controller.model.setSelectedElement(file);
 	}
 	
 	public File getSelectedElement(){

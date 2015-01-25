@@ -13,7 +13,6 @@ public class PrintPathCommand extends Command {
 	public void setEnable(File f) {
 		if (f.isDirectory() || f.isFile())
 			this.enable = true;
-		
 	}
 
 	@Override

@@ -13,7 +13,8 @@ public class PrintFolderNameCommand extends Command {
 	public void setEnable(File f) {
 		if (f.isDirectory())
 			this.enable = true;
-		
+		else
+			this.enable = false;
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package Application;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Observable;
 
 
@@ -11,7 +10,8 @@ public class Model extends Observable{
 	
 	public void setRootPath(String path){
 		this.rootPath = path;
-		this.setSelectedElement(new File(path));
+		//this.setChanged();
+		//notifyObservers("rootChanged");
 	}
 	
 	public String getRootPath(){
@@ -26,7 +26,7 @@ public class Model extends Observable{
 		this.selectedElement = file;
 		System.out.println(this.selectedElement.getName() + " is the seletcted element");
 		this.setChanged();
-		notifyObservers();
+		notifyObservers("elementSelected");
 	}
 	
 	public void cleanOutputs(){

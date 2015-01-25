@@ -95,7 +95,8 @@ public class CommandView extends VBox{
 		public void update(Observable o, Object arg) {
 			System.out.println("View update");
 			
-			if(this.controller.getAutoRun()){
+			if(this.controller.getAutoRun() && (String)arg=="elementSelected"){
+				((TextField)this.getChildren().get(1)).setText("");
 				this.getChildren().get(0).fireEvent(new ActionEvent());
 			}
 			

@@ -13,6 +13,8 @@ public class PrintFileNameCommand extends Command {
 	public void setEnable(File f) {
 		if (f.isFile())
 			this.enable = true;
+		else
+			this.enable = false;
 		
 	}
 
