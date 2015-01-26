@@ -15,6 +15,11 @@ public class Model extends Observable{
     public static Model getInstance() {
         return INSTANCE;
     }
+    
+    public static Model getInstance(String rootPath) {
+    	INSTANCE.rootPath = rootPath;
+    	return INSTANCE;
+    }
 	
 	public void setRootPath(String path){
 		this.rootPath = path;

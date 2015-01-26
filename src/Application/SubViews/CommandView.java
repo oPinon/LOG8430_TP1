@@ -72,7 +72,7 @@ public class CommandView extends VBox{
 			@Override
 			public void handle(ActionEvent arg0) {
 				
-				CommandView commandView = (CommandView) self.controller.getView().getChildren().get(1);
+				CommandView commandView = self;
 				VBox commandsPart1 = (VBox) commandView.getChildren().get(0);
 				for (Node n: commandsPart1.getChildren()){
 					SingleCommandView s = (SingleCommandView)n;

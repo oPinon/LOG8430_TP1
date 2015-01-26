@@ -11,18 +11,15 @@ public class Controller {
 	
 	private boolean autoRun;
 	private static Model model;
-	private View view;
 	private ArrayList<ICommand> commandsList; 
 	
-	public Controller(String rootPath){
+	public Controller(Model model){
 		this.commandsList = new ArrayList<ICommand>();
 		this.commandsList.add(new PrintFileNameCommand());
 		this.commandsList.add(new PrintFolderNameCommand());
 		this.commandsList.add(new PrintPathCommand());
 		
-		Controller.model = Model.getInstance();
-		this.setRootPath(rootPath);
-		this.view = new View(this);
+		Controller.model = model;
 	}
 	
 	public void setAutoRun(boolean flag){
@@ -35,10 +32,6 @@ public class Controller {
 	
 	public Model getModel(){
 		return Controller.model;
-	}
-	
-	public View getView(){
-		return this.view;
 	}
 	
 	public ArrayList<ICommand> getCommands(){
