@@ -6,6 +6,9 @@ import Application.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -34,8 +37,10 @@ public class SelectionView extends VBox {
 			}
 		});
 		
-		
-		this.getChildren().addAll(fileView, selectRootButton);
+		ScrollPane fileViewPane = new ScrollPane(fileView);
+		fileViewPane.setFitToWidth(true); fileViewPane.setFitToHeight(true);
+		VBox.setVgrow(fileViewPane, Priority.ALWAYS);
+		this.getChildren().addAll(fileViewPane, new Separator(), selectRootButton);
 	}
 	
 	public void update() {

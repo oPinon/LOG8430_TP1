@@ -8,11 +8,15 @@ import Application.Controller;
 import Command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class CommandView extends VBox{
@@ -31,7 +35,8 @@ public class CommandView extends VBox{
 			this.controller.getModel().addObserver(singleCommandView);
 			
 			Button commandButton = new Button(command.getName());
-			TextField commandResult = new TextField(""); 
+			TextField commandResult = new TextField("");
+			HBox.setHgrow(commandResult, Priority.ALWAYS);
 			
 			CommandView self = this;
 			commandButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -60,6 +65,7 @@ public class CommandView extends VBox{
 		}
 		
 		HBox commandsPart2 = new HBox(); // Clear button and Autorun checkbox
+		commandsPart2.setAlignment(Pos.CENTER_RIGHT); commandsPart2.setSpacing(10);
 		Button clearButton = new Button("Clear");
 		CommandView self = this;
 		clearButton.setOnAction(new EventHandler<ActionEvent>(){
@@ -87,7 +93,10 @@ public class CommandView extends VBox{
 
 		commandsPart2.getChildren().addAll(clearButton, autorunCheckbox);
 		
-		this.getChildren().addAll(commandsPart1, commandsPart2);
+		ScrollPane scrollPanePart1 = new ScrollPane(commandsPart1);
+		scrollPanePart1.setFitToWidth(true); scrollPanePart1.setFitToHeight(true);
+		VBox.setVgrow(scrollPanePart1, Priority.ALWAYS);
+		this.getChildren().addAll( scrollPanePart1, new Separator(), commandsPart2);
 
 	}
 	
@@ -104,7 +113,7 @@ public class CommandView extends VBox{
 			System.out.println("View update");
 			
 			if(this.controller.getAutoRun() && (String)arg=="elementSelected"){
-				((TextField)this.getChildren().get(1)).setText("");
+				((TextField)this.getChildren().get(1)).setText(""); // HORRIBLE CODE :(
 				this.getChildren().get(0).fireEvent(new ActionEvent());
 			}
 		}
