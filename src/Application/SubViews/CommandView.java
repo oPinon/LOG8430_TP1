@@ -29,16 +29,16 @@ public class CommandView extends VBox{
 		
 		VBox commandsPart1 = new VBox(); // each command is a HBox with button on left, and text on right
 		
-		for (ICommand command: _controller.getCommands()){
+		for (final ICommand command: _controller.getCommands()){
 			
 			SingleCommandView singleCommandView = new SingleCommandView(this.controller);
 			this.controller.getModel().addObserver(singleCommandView);
 			
 			Button commandButton = new Button(command.getName());
-			TextField commandResult = new TextField("");
+			final TextField commandResult = new TextField("");
 			HBox.setHgrow(commandResult, Priority.ALWAYS);
 			
-			CommandView self = this;
+			final CommandView self = this;
 			commandButton.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent arg0) {
@@ -67,7 +67,7 @@ public class CommandView extends VBox{
 		HBox commandsPart2 = new HBox(); // Clear button and Autorun checkbox
 		commandsPart2.setAlignment(Pos.CENTER_RIGHT); commandsPart2.setSpacing(10);
 		Button clearButton = new Button("Clear");
-		CommandView self = this;
+		final CommandView self = this;
 		clearButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -82,7 +82,7 @@ public class CommandView extends VBox{
 			}
 		});
 		
-		CheckBox autorunCheckbox = new CheckBox("AutoRun");
+		final CheckBox autorunCheckbox = new CheckBox("AutoRun");
 		autorunCheckbox.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {
@@ -93,7 +93,8 @@ public class CommandView extends VBox{
 
 		commandsPart2.getChildren().addAll(clearButton, autorunCheckbox);
 		
-		ScrollPane scrollPanePart1 = new ScrollPane(commandsPart1);
+		ScrollPane scrollPanePart1 = new ScrollPane();
+		scrollPanePart1.setContent(commandsPart1);
 		scrollPanePart1.setFitToWidth(true); scrollPanePart1.setFitToHeight(true);
 		VBox.setVgrow(scrollPanePart1, Priority.ALWAYS);
 		this.getChildren().addAll( scrollPanePart1, new Separator(), commandsPart2);

@@ -30,11 +30,11 @@ public class SingleFileView extends HBox{
 		// need to add a function to notify the view to update when open/close
 		Button openButton = null;
 		
-		File f = _parent.file;
+		final File f = _parent.file;
 		if(f.isDirectory()){
 			openButton = new Button("+");
 						
-			SingleFileView self = this;
+			final SingleFileView self = this;
 			openButton.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent arg0) {
@@ -60,7 +60,7 @@ public class SingleFileView extends HBox{
 		
 		//set the selectButton
 		//need to add a event handler to notify the controller which file is selected
-		SingleFileView self = this;
+		final SingleFileView self = this;
 		Button selectButton = new Button(f.getName());
 		selectButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

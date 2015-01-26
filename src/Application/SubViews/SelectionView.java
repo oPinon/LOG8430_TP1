@@ -23,7 +23,7 @@ public class SelectionView extends VBox {
 		FileView fileView = new FileView(this.controller, new File(this.controller.getRootPath()));
 		Button selectRootButton = new Button("Select a file or folder");
 		
-		SelectionView self = this;
+		final SelectionView self = this;
 		selectRootButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -37,7 +37,7 @@ public class SelectionView extends VBox {
 			}
 		});
 		
-		ScrollPane fileViewPane = new ScrollPane(fileView);
+		ScrollPane fileViewPane = new ScrollPane(); fileViewPane.setContent(fileView);
 		fileViewPane.setFitToWidth(true); fileViewPane.setFitToHeight(true);
 		VBox.setVgrow(fileViewPane, Priority.ALWAYS);
 		this.getChildren().addAll(fileViewPane, new Separator(), selectRootButton);

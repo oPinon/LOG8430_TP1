@@ -16,7 +16,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		Controller controller = new Controller(System.getProperty("user.dir") + "/src");
+		Controller controller = new Controller("/");
     	
 		Scene scene = new Scene(controller.getView(),800,600);
 		

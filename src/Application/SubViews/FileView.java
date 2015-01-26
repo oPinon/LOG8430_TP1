@@ -26,8 +26,9 @@ public class FileView extends VBox{
 		
 		if (singleFileView.isOpened){
 			for(File f : this.file.listFiles()) {
-				HBox intentedFileView = new HBox(new Text("    "),new FileView(this.controller, f));
-				this.getChildren().add(intentedFileView);
+				HBox indentedFileView = new HBox();
+				indentedFileView.getChildren().addAll(new Text("    "),new FileView(this.controller, f));
+				this.getChildren().add(indentedFileView);
 				//this.getChildren().add(new FileView(f));	
 			}
 		} else{
