@@ -19,42 +19,16 @@ public class CommandView extends VBox{
 	
 	protected Controller controller;
 	
-	public CommandView(Controller _controller){
+	// view of the commands, with a Clear and an Autorun button at the bottom
+	public CommandView(Controller controller){
 		
-		this.controller = _controller;
+		this.controller = controller;
 		
 		VBox commandsPart1 = new VBox(); // each command is a HBox with button on left, and text on right
 		
-		for (final ICommand command: _controller.getCommands()){
+		for (final ICommand command: controller.getCommands()){
 			
-			SingleCommandView singleCommandView = new SingleCommandView(this.controller);
-			
-			Button commandButton = new Button(command.getName());
-			final TextField commandResult = new TextField("");
-			HBox.setHgrow(commandResult, Priority.ALWAYS);
-			
-			final CommandView self = this;
-			commandButton.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent arg0) {
-					System.out.println(command.getName()+" is pressed");
-					System.out.println("In commandController, the selected element is: " + self.controller.getSelectedElement().getName()
-							+ ". isFile?" + self.controller.getSelectedElement().isFile() 
-							+ "; isFolder?" + self.controller.getSelectedElement().isDirectory() 
-							);
-					if(command.isEnable()){
-						String result = (String)command.execute(self.controller.getSelectedElement());
-						commandResult.setText(result);
-					}
-				}
-			});
-			
-			
-			//commandResult.setAlignment(Pos.CENTER_RIGHT);
-			//HBox.setHgrow(commandResult, Priority.ALWAYS);
-			
-			singleCommandView.getChildren().addAll(commandButton,commandResult);
-			
+			SingleCommandView singleCommandView = new SingleCommandView(this.controller, command);			
 			
 			commandsPart1.getChildren().addAll(singleCommandView);
 		}
@@ -62,17 +36,11 @@ public class CommandView extends VBox{
 		HBox commandsPart2 = new HBox(); // Clear button and Autorun checkbox
 		commandsPart2.setAlignment(Pos.CENTER_RIGHT); commandsPart2.setSpacing(10);
 		Button clearButton = new Button("Clear");
-		final CommandView self = this;
 		clearButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
-				
-				CommandView commandView = self;
-				VBox commandsPart1 = (VBox) commandView.getChildren().get(0);
-				for (Node n: commandsPart1.getChildren()){
-					SingleCommandView s = (SingleCommandView)n;
-					TextField t = (TextField)s.getChildren().get(1);
-					t.setText("");
+				for(ICommand c : controller.getCommands()) {
+					c.clear();
 				}
 			}
 		});
@@ -81,7 +49,7 @@ public class CommandView extends VBox{
 		autorunCheckbox.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {
-	        	self.controller.setAutoRun(autorunCheckbox.isSelected());
+	        	controller.setAutoRun(autorunCheckbox.isSelected());
 	        }
 		});
 
@@ -93,16 +61,6 @@ public class CommandView extends VBox{
 		VBox.setVgrow(scrollPanePart1, Priority.ALWAYS);
 		this.getChildren().addAll( scrollPanePart1, new Separator(), commandsPart2);
 
-	}
-	
-	public class SingleCommandView extends HBox {
-		
-		private Controller controller;
-		
-		public SingleCommandView(Controller _controller){
-			this.controller = _controller;
-		}
-		
 	}
 
 }

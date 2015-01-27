@@ -6,8 +6,8 @@ public interface ICommand {
 	
 	public String getName();
 	
-	public void setEnable(File f);
-	public boolean isEnable();
+	public void clear();
+	public String displayResult();
 	
-	public Object execute(File f);
+	public void execute(File f);
 }

@@ -45,10 +45,12 @@ public class Controller {
 	
 	public void setSelectedElement(File file){
 		
-		for(ICommand command : this.commandsList){
-			command.setEnable(file);
-		}
 		Controller.model.setSelectedElement(file);
+		if(autoRun) {
+			for(ICommand c : commandsList) {
+				c.execute(file);
+			}
+		}
 	}
 	
 	public File getSelectedElement(){

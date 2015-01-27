@@ -5,26 +5,27 @@ import java.io.File;
 public class Command implements ICommand {
 	
 	protected boolean enable = false;
-	
-	@Override
-	public boolean isEnable(){
-		return this.enable;
-	}
+	protected Object result;
 
 	@Override
-	public void setEnable(File f) {
+	public void execute(File f) {
 		//need to be override
-	}
-
-	@Override
-	public Object execute(File f) {
-		//need to be override
-		return null;
+		return;
 	}
 
 	@Override
 	public String getName() {
 		return "";
+	}
+
+	@Override
+	public void clear() {
+		
+	}
+
+	@Override
+	public String displayResult() {
+		return result.toString();
 	}
 
 }

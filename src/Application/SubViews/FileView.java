@@ -73,48 +73,5 @@ public class FileView extends VBox{
 		fileView.getChildren().addAll(icon,selectButton);
 		this.getChildren().addAll(fileView,childrenView);
 		
-		/*if(f.isDirectory()){
-			openButton = new Button("+");
-						
-			final SingleFileView self = this;
-			openButton.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent arg0) {
-					
-					if(isOpened) {
-						System.out.println("Close a folder");
-						isOpened = false;
-						parent.update(self);
-					}
-					else {
-						System.out.println("Open a folder");
-						isOpened = true;
-						parent.update(self);
-					}
-				}
-			});
-		} else if (f.isFile()){
-			openButton = new Button(" "); //in fact, this is not a button, need to be changed after;
-		}
-		
-		//set the ImageView
-		ImageView typeIcon = new ImageView(f.isDirectory()? (isOpened?folderOpenedIcon:folderClosedIcon):fileIcon );
-		
-		//set the selectButton
-		//need to add a event handler to notify the controller which file is selected
-		final SingleFileView self = this;
-		Button selectButton = new Button(f.getName());
-		selectButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent arg0) {
-				//need to be implemented
-				System.out.println(f.getName()+"'s SelectButton is pressed");
-				self.controller.setSelectedElement(f.getAbsolutePath());
-				
-			}
-		});
-		
-		//combine the three button to this
-		this.getChildren().addAll(openButton, typeIcon,selectButton);*/
 	}
 }

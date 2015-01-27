@@ -8,22 +8,14 @@ public class PrintFolderNameCommand extends Command {
 	public String getName() {
 		return "PrintFolderNameCommand";
 	}
-	
-	@Override
-	public void setEnable(File f) {
-		if (f.isDirectory())
-			this.enable = true;
-		else
-			this.enable = false;
-	}
 
 	@Override
-	public Object execute(File f) {
+	public void execute(File f) {
 		
 		if (f.isDirectory())
-			return "Folder Name is: " + f.getName();
+			this.result = "Folder Name is: " + f.getName();
 		else
-			return "Error";
+			this.result = "Error";
 		
 	}
 
