@@ -17,6 +17,8 @@ public class PrintFileNameCommand extends Command {
 		else
 			this.result = "Error";
 		
+		super.execute(f);
+		
 	}
 	
 }

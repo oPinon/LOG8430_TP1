@@ -26,13 +26,11 @@ public class SingleCommandView extends HBox {
 		executeButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				System.out.println(command.getName()+" is pressed");
 				command.execute(controller.getSelectedElement());
-				commandResult.setText(command.displayResult());
+				commandResult.textProperty().bind(command.resultStringProperty());
 			}
 		});
 		
 		this.getChildren().addAll(executeButton, commandResult);
 	}
-	
 }

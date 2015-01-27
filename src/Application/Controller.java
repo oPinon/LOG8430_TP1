@@ -46,6 +46,9 @@ public class Controller {
 	public void setSelectedElement(File file){
 		
 		Controller.model.setSelectedElement(file);
+		for(ICommand c : commandsList) { // clear all results since the file has changed
+			c.clear();
+		}
 		if(autoRun) {
 			for(ICommand c : commandsList) {
 				c.execute(file);

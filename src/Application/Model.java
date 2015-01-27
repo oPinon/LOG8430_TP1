@@ -17,6 +17,7 @@ public class Model {
     
     public static Model getInstance(String rootPath) {
     	INSTANCE.rootPath = rootPath;
+    	INSTANCE.setSelectedElement(new File(rootPath));
     	return INSTANCE;
     }
 	
@@ -34,7 +35,6 @@ public class Model {
 
 	public void setSelectedElement(File file){
 		this.selectedElement = file;
-		System.out.println(this.selectedElement.getName() + " is the seletcted element");
 	}
 
 }
