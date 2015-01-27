@@ -26,10 +26,6 @@ public class Controller {
 		this.autoRun = flag;
 	}
 	
-	public boolean getAutoRun(){
-		return this.autoRun;
-	}
-	
 	public Model getModel(){
 		return Controller.model;
 	}
@@ -40,15 +36,14 @@ public class Controller {
 	
 	public void setRootPath(String path){
 		Controller.model.setRootPath(path);
-		this.setSelectedElement(path);
+		this.setSelectedElement(new File(path));
 	}
 	
 	public String getRootPath(){
 		return Controller.model.getRootPath();
 	}
 	
-	public void setSelectedElement(String path){
-		File file = new File(path);
+	public void setSelectedElement(File file){
 		
 		for(ICommand command : this.commandsList){
 			command.setEnable(file);

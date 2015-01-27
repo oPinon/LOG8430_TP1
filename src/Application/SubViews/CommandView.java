@@ -1,9 +1,5 @@
 package Application.SubViews;
 
-
-import java.util.Observable;
-import java.util.Observer;
-
 import Application.Controller;
 import Command.ICommand;
 import javafx.event.ActionEvent;
@@ -32,7 +28,6 @@ public class CommandView extends VBox{
 		for (final ICommand command: _controller.getCommands()){
 			
 			SingleCommandView singleCommandView = new SingleCommandView(this.controller);
-			this.controller.getModel().addObserver(singleCommandView);
 			
 			Button commandButton = new Button(command.getName());
 			final TextField commandResult = new TextField("");
@@ -87,7 +82,6 @@ public class CommandView extends VBox{
 		    @Override
 		    public void handle(ActionEvent event) {
 	        	self.controller.setAutoRun(autorunCheckbox.isSelected());
-	        	System.out.println("AutoRun is " + self.controller.getAutoRun());
 	        }
 		});
 
@@ -101,22 +95,12 @@ public class CommandView extends VBox{
 
 	}
 	
-	public class SingleCommandView extends HBox implements Observer{
+	public class SingleCommandView extends HBox {
 		
 		private Controller controller;
 		
 		public SingleCommandView(Controller _controller){
 			this.controller = _controller;
-		}
-		
-		@Override
-		public void update(Observable o, Object arg) {
-			System.out.println("View update");
-			
-			if(this.controller.getAutoRun() && (String)arg=="elementSelected"){
-				((TextField)this.getChildren().get(1)).setText(""); // HORRIBLE CODE :(
-				this.getChildren().get(0).fireEvent(new ActionEvent());
-			}
 		}
 		
 	}

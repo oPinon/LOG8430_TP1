@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.Observable;
 
 
-public class Model extends Observable{
+public class Model {
 	private String rootPath;
 	private File selectedElement;
 	private final static Model INSTANCE = new Model();
@@ -36,8 +36,6 @@ public class Model extends Observable{
 	public void setSelectedElement(File file){
 		this.selectedElement = file;
 		System.out.println(this.selectedElement.getName() + " is the seletcted element");
-		this.setChanged();
-		notifyObservers("elementSelected");
 	}
 
 }
