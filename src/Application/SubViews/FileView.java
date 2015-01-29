@@ -23,7 +23,7 @@ public class FileView extends VBox{
 	boolean isSelected;
 	Controller controller;
 	
-	public FileView(Controller controller, File file) {
+	public FileView(Controller controller, File file, boolean isRoot) {
 		
 		this.controller = controller;
 		
@@ -48,7 +48,7 @@ public class FileView extends VBox{
 						File[] children = file.listFiles();
 						if(children!=null) {
 							for(File f : children) {
-								FileView child = new FileView(controller, f);
+								FileView child = new FileView(controller, f, false);
 								child.setPadding(new Insets(0,0,0,20));
 								childrenView.getChildren().add(child);
 							}
@@ -61,7 +61,7 @@ public class FileView extends VBox{
 			icon = new ImageView(fileIcon);
 		}
 		
-		Button selectButton = new Button(file.getName());
+		Button selectButton = new Button(isRoot ? file.getAbsolutePath() : file.getName());
 		selectButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

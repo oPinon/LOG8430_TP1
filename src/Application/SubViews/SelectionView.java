@@ -25,8 +25,8 @@ public class SelectionView extends VBox {
 		this.controller = controller;
 		
 		// a view of the file tree in a scrollPane
-		FileView fileView = new FileView(this.controller, new File(this.controller.getRootPath()));		
-		ScrollPane fileViewPane = new ScrollPane(); fileViewPane.setContent(fileView);
+		FileView fileView = new FileView(this.controller, new File(this.controller.getRootPath()), true);		
+		final ScrollPane fileViewPane = new ScrollPane(); fileViewPane.setContent(fileView);
 		fileViewPane.setFitToWidth(true); fileViewPane.setFitToHeight(true);
 		VBox.setVgrow(fileViewPane, Priority.ALWAYS);
 		
@@ -44,6 +44,7 @@ public class SelectionView extends VBox {
 				File file = directoryChooser.showDialog(stage);
                 if (file != null) {
                 	self.controller.setRootPath(file.getAbsolutePath());
+                	fileViewPane.setContent(new FileView(self.controller, new File(self.controller.getRootPath()), true));
                 }
 			}
 		});
