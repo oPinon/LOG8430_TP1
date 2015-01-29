@@ -20,6 +20,7 @@ public class Controller {
 		this.commandsList.add(new PrintPathCommand());
 		
 		Controller.model = model;
+		this.setRootPath(model.getRootPath());
 	}
 	
 	public void setAutoRun(boolean flag){
@@ -47,11 +48,11 @@ public class Controller {
 		
 		Controller.model.setSelectedElement(file);
 		for(ICommand c : commandsList) { // clear all results since the file has changed
-			c.clear();
+			c.setFile(file);
 		}
 		if(autoRun) {
 			for(ICommand c : commandsList) {
-				c.execute(file);
+				c.execute();
 			}
 		}
 	}

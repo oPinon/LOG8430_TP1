@@ -19,15 +19,19 @@ public class SingleCommandView extends HBox {
 		this.controller = controller;
 		this.command = command;
 		
+		// button to execute the command
 		executeButton = new Button(command.getName());
+		executeButton.disableProperty().bind(command.disabledProperty());
+		
+		// textField to display the result of the command
 		final TextField commandResult = new TextField("");
+		commandResult.textProperty().bind(command.resultStringProperty());
 		HBox.setHgrow(commandResult, Priority.ALWAYS);
 		
 		executeButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				command.execute(controller.getSelectedElement());
-				commandResult.textProperty().bind(command.resultStringProperty());
+				command.execute();
 			}
 		});
 		

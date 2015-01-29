@@ -2,32 +2,31 @@ package Command;
 
 import java.io.File;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.StringPropertyBase;
+import javafx.beans.value.ObservableBooleanValue;
 
 public class Command implements ICommand {
 	
-	protected boolean enable = false;
 	protected Object result;
-	private StringPropertyBase resultString = new StringPropertyBase() {
-		
-		@Override
-		public String getName() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Object getBean() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-	};
+	final protected StringPropertyBase resultString = new SimpleStringProperty();
+	final protected SimpleBooleanProperty disabledProperty = new SimpleBooleanProperty();
+	protected File file;
+	
+	@Override
+	public void setFile(File file) {
+		this.file = file;
+		this.clear(); // the file has changed => hence the result is invalidated
+	}
 
 	@Override
-	public void execute(File f) {
-		this.resultString.set(result.toString());
-		return;
+	public void execute() {
+		if(!this.disabledProperty.get()) {
+			this.resultString.set(result.toString());
+		}
 	}
 
 	@Override
@@ -45,4 +44,8 @@ public class Command implements ICommand {
 		return this.resultString;
 	}
 
+	@Override
+	public BooleanProperty disabledProperty() {
+		return this.disabledProperty;
+	}
 }

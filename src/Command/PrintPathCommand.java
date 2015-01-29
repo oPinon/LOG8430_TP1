@@ -10,14 +10,12 @@ public class PrintPathCommand extends Command {
 	}
 
 	@Override
-	public void execute(File f) {
+	public void execute() {
 		
-		if (f.isFile() || f.isDirectory())
-			this.result = f.getAbsolutePath();
-		else
-			this.result = "Error";
+		this.result = "File path is: " + this.file.getAbsolutePath();
 		
-		super.execute(f);
+		super.execute();
+		
 	}
 
 }

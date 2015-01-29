@@ -15,11 +15,13 @@ public class PrintFolderNameCommandTest {
 	public void testExecute(){
 		File eFile = new File(System.getProperty("user.dir") + "/src/Application/Main.java");
 		Command c = new PrintFolderNameCommand();
-		c.execute(eFile);
+		c.setFile(eFile);
+		c.execute();
 		//assertEquals(c.displayResult(), "Error");
 		
 		File eFolder = new File(System.getProperty("user.dir") + "/src");
-		c.execute(eFolder);
+		c.setFile(eFolder);
+		c.execute();
 		//assertEquals(c.displayResult(), "Folder Name is: src");
 	}
 }

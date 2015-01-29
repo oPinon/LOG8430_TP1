@@ -15,12 +15,14 @@ public class PrintPathCommandTest {
 	public void testExecute(){
 		File eFile = new File(System.getProperty("user.dir") + "/src/Application/Main.java");
 		Command c = new PrintPathCommand();
-		c.execute(eFile);
-		//assertEquals(c.displayResult(), System.getProperty("user.dir") + "/src/Application/Main.java");
+		c.setFile(eFile);
+		c.execute();
+		assertEquals(c.resultStringProperty().get(), System.getProperty("user.dir") + "/src/Application/Main.java");
 		
 		File eFolder = new File(System.getProperty("user.dir") + "/src");
-		c.execute(eFolder);
-		//assertEquals(c.displayResult(), System.getProperty("user.dir") + "/src");
+		c.setFile(eFolder);
+		c.execute();
+		assertEquals(c.resultStringProperty().get(), System.getProperty("user.dir") + "/src");
 	}
 
 }
