@@ -4,7 +4,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
+/*
+ * Launches one of each : Model, View, Controller
+ */
 public class Main extends Application {
 	
 	public static void main(String[] args) {
@@ -16,9 +18,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		Controller controller = new Controller("/");
+		Model model = Model.getInstance("/"); // creates a new model at the disk's root
+		Controller controller = new Controller(model);
+		View view = new View(controller);
     	
-		Scene scene = new Scene(controller.getView(),800,600);
+		Scene scene = new Scene(view,800,600);
 		
 		stage.setTitle("Main View");
         stage.setScene(scene);

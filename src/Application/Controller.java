@@ -11,34 +11,24 @@ public class Controller {
 	
 	private boolean autoRun;
 	private static Model model;
-	private View view;
 	private ArrayList<ICommand> commandsList; 
 	
-	public Controller(String rootPath){
+	public Controller(Model model){
 		this.commandsList = new ArrayList<ICommand>();
 		this.commandsList.add(new PrintFileNameCommand());
 		this.commandsList.add(new PrintFolderNameCommand());
 		this.commandsList.add(new PrintPathCommand());
 		
-		Controller.model = Model.getInstance();
-		this.setRootPath(rootPath);
-		this.view = new View(this);
+		Controller.model = model;
+		this.setRootPath(model.getRootPath());
 	}
 	
 	public void setAutoRun(boolean flag){
 		this.autoRun = flag;
 	}
 	
-	public boolean getAutoRun(){
-		return this.autoRun;
-	}
-	
 	public Model getModel(){
 		return Controller.model;
-	}
-	
-	public View getView(){
-		return this.view;
 	}
 	
 	public ArrayList<ICommand> getCommands(){
@@ -47,20 +37,24 @@ public class Controller {
 	
 	public void setRootPath(String path){
 		Controller.model.setRootPath(path);
-		this.setSelectedElement(path);
+		this.setSelectedElement(new File(path));
 	}
 	
 	public String getRootPath(){
 		return Controller.model.getRootPath();
 	}
 	
-	public void setSelectedElement(String path){
-		File file = new File(path);
+	public void setSelectedElement(File file){
 		
-		for(ICommand command : this.commandsList){
-			command.setEnable(file);
-		}
 		Controller.model.setSelectedElement(file);
+		for(ICommand c : commandsList) { // clear all results since the file has changed
+			c.setFile(file);
+		}
+		if(autoRun) {
+			for(ICommand c : commandsList) {
+				c.execute();
+			}
+		}
 	}
 	
 	public File getSelectedElement(){

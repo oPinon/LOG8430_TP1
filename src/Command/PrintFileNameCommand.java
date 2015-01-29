@@ -10,21 +10,17 @@ public class PrintFileNameCommand extends Command {
 	}
 	
 	@Override
-	public void setEnable(File f) {
-		if (f.isFile())
-			this.enable = true;
-		else
-			this.enable = false;
-		
+	public void setFile(File file) {
+		super.setFile(file);
+		this.disabledProperty.set(!file.isFile());
 	}
 
 	@Override
-	public Object execute(File f) {
+	public void execute() {
 		
-		if (f.isFile())
-			return "File Name is: " + f.getName();
-		else
-			return "Error";
+		this.result = "File name is: " + this.file.getName();
+		
+		super.execute();
 		
 	}
 	

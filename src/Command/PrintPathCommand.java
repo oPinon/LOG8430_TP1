@@ -8,20 +8,13 @@ public class PrintPathCommand extends Command {
 	public String getName() {
 		return "PrintPathCommand";
 	}
-		
-	@Override
-	public void setEnable(File f) {
-		if (f.isDirectory() || f.isFile())
-			this.enable = true;
-	}
 
 	@Override
-	public Object execute(File f) {
+	public void execute() {
 		
-		if (f.isFile() || f.isDirectory())
-			return f.getAbsolutePath();
-		else
-			return "Error";
+		this.result = "File path is: " + this.file.getAbsolutePath();
+		
+		super.execute();
 		
 	}
 

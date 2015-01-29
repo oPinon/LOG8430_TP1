@@ -2,12 +2,20 @@ package Command;
 
 import java.io.File;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.StringProperty;
+
 public interface ICommand {
 	
 	public String getName();
 	
-	public void setEnable(File f);
-	public boolean isEnable();
+	public StringProperty resultStringProperty();
+	public BooleanProperty disabledProperty();
 	
-	public Object execute(File f);
+	public void clear();
+	
+	public void setFile(File f);
+	
+	public void execute();
+	
 }
