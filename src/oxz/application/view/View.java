@@ -16,7 +16,7 @@ public class View extends HBox{
 	
 	/**
 	 * 
-	 * @param controller controller delegeted itself in view
+	 * @param controller controller set itself to view as delegate
 	 */
 	public View(Controller controller){
 				

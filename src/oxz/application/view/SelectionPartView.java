@@ -27,7 +27,7 @@ public class SelectionPartView extends VBox {
 		
 	/**
 	 * 
-	 * @param controller controller delegeted itself in view
+	 * @param controller controller set itself to view as delegate
 	 */
 	
 	public SelectionPartView(Controller controller){

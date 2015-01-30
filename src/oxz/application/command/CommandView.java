@@ -19,7 +19,7 @@ public class CommandView extends HBox {
 		
 	/**
 	 * 
-	 * @param command view is constructed base on a command model
+	 * @param command view is constructed base on a command 
 	 */
 	public CommandView(ICommand command){
 		
@@ -35,9 +35,7 @@ public class CommandView extends HBox {
 		executeButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				
-				// This might violate the MVC, need to be changed -- Yan Xu 2015-01-29
-				// no time to change it today.
+
 				command.execute();
 			}
 		});
