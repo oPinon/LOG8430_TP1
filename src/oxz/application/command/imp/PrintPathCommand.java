@@ -1,7 +1,5 @@
 package oxz.application.command.imp;
 
-import java.io.File;
-
 import oxz.application.command.Command;
 
 public class PrintPathCommand extends Command {
