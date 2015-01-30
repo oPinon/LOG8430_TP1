@@ -1,5 +1,6 @@
-package Application;
+package oxz.application;
 
+import oxz.application.view.View;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

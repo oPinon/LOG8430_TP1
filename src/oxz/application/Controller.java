@@ -1,13 +1,12 @@
-package Application;
+package oxz.application;
 import java.io.File;
 import java.util.ArrayList;
-
-import Command.Command;
-import Command.ICommand;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+
+import oxz.application.command.Command;
+import oxz.application.command.ICommand;
 
 public class Controller {
 	

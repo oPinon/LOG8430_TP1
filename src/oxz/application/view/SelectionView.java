@@ -1,8 +1,8 @@
-package Application.SubViews;
+package oxz.application.view;
 
 import java.io.File;
 
-import Application.Controller;
+import oxz.application.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

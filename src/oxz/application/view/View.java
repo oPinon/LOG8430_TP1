@@ -1,6 +1,5 @@
-package Application;
-import Application.SubViews.CommandView;
-import Application.SubViews.SelectionView;
+package oxz.application.view;
+import oxz.application.Controller;
 import javafx.geometry.Insets;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;

@@ -1,4 +1,4 @@
-package Command;
+package oxz.application.command;
 
 import java.io.File;
 

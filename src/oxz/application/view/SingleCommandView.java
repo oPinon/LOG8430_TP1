@@ -1,13 +1,13 @@
-package Application.SubViews;
+package oxz.application.view;
 
+import oxz.application.Controller;
+import oxz.application.command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import Application.Controller;
-import Command.ICommand;
 
 public class SingleCommandView extends HBox {
 	

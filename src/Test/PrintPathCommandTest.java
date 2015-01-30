@@ -6,8 +6,8 @@ import java.io.File;
 
 import org.junit.Test;
 
-import Command.Command;
-import Command.imp.PrintPathCommand;
+import oxz.application.command.Command;
+import oxz.application.command.imp.PrintPathCommand;
 
 public class PrintPathCommandTest {
 	

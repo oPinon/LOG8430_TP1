@@ -1,7 +1,7 @@
-package Application.SubViews;
+package oxz.application.view;
 
-import Application.Controller;
-import Command.ICommand;
+import oxz.application.Controller;
+import oxz.application.command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;

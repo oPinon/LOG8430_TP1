@@ -6,8 +6,8 @@ import java.io.File;
 
 import org.junit.Test;
 
-import Command.Command;
-import Command.imp.PrintFolderNameCommand;
+import oxz.application.command.Command;
+import oxz.application.command.imp.PrintFolderNameCommand;
 
 public class PrintFolderNameCommandTest {
 
