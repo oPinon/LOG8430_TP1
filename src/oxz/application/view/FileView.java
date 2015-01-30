@@ -13,14 +13,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * extends VBox, a FileView can contains its children to form a tree structure
+ * every file element has a button, it call the controller to set the selected element when is clicked
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
+ */
+
 public class FileView extends VBox{
 	
 	static Image fileIcon = new Image("file:images/file.png");
 	static Image folderOpenedIcon = new Image("file:images/folderOpened.png");
 	static Image folderClosedIcon = new Image("file:images/folderClosed.png");
 	
-	boolean isOpened;
-	boolean isSelected;
+	private boolean isOpened;
+	//private boolean isSelected;
 	
 	public FileView(Controller controller, File file, boolean isRoot) {
 				

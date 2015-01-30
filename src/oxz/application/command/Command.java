@@ -8,6 +8,13 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.StringPropertyBase;
 
+/**
+ * The abstract class Command, it implement some general method, as well as some general attributes
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
+ */
+
 public abstract class Command implements ICommand {
 	
 	protected Object result;
@@ -19,13 +26,6 @@ public abstract class Command implements ICommand {
 	public void setFile(File file) {
 		this.file = file;
 		this.clear(); // the file has changed => hence the result is invalidated
-	}
-
-	@Override
-	public void execute() {
-		if(!this.disabledProperty.get()) {
-			this.resultString.set(result.toString());
-		}
 	}
 
 	@Override

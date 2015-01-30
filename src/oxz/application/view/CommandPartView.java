@@ -14,8 +14,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+/**
+ * extends VBox, contains all the commandViews and a button "clean" and a checkbox "Autorun"
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
+ */
+
 public class CommandPartView extends VBox{
-		
+	
+	/**
+	 * 
+	 * @param controller controller delegeted itself in view
+	 */
 	// view of the commands, with a Clear and an Autorun checkbox at the bottom
 	public CommandPartView(Controller controller){
 				

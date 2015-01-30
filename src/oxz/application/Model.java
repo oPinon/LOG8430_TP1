@@ -1,9 +1,17 @@
 package oxz.application;
 import java.io.File;
 
+/**
+ * This is the controller of the program, 
+ * generated with the model of our application
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
+ */
+
 public class Model {
 	private String rootPath = "/";
-	private File selectedElement;
+	private File selectedElement = new File("/");
 	
 	/*
 	 * remove the Singleton Pattern, it is not necessary here

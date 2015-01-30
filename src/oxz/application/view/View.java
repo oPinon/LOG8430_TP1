@@ -5,9 +5,19 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
+/**
+ * extends HBox, The whole view has two parts, a selectionPartView and a CommandPartView
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
+ */
 
 public class View extends HBox{
-		
+	
+	/**
+	 * 
+	 * @param controller controller delegeted itself in view
+	 */
 	public View(Controller controller){
 				
 		// View of all the commands, on the right side of the window

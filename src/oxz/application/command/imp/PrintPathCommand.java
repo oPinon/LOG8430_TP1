@@ -12,10 +12,12 @@ public class PrintPathCommand extends Command {
 	@Override
 	public void execute() {
 		
-		this.result = "File path is: " + this.file.getAbsolutePath();
-		
-		super.execute();
-		
+		if(!this.disabledProperty.get()) {
+			this.result = "File path is: " + this.file.getAbsolutePath();
+			this.resultString.set(result.toString());
+			
+		}
+
 	}
 
 }

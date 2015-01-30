@@ -13,11 +13,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-/*
- * Window with a file tree, and a button on the bottom to change the root
+
+/**
+ * extends VBox, contains a view with a file tree, and a button on the bottom to change the root path
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
  */
+
 public class SelectionPartView extends VBox {
 		
+	/**
+	 * 
+	 * @param controller controller delegeted itself in view
+	 */
+	
 	public SelectionPartView(Controller controller){
 				
 		// a view of the file tree in a scrollPane

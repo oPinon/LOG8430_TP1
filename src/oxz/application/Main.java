@@ -5,8 +5,12 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/*
- * Launches one of each : Model, View, Controller
+/**
+ * This is the entry point of the application
+ * It initialize a model, a controller and a scene contains the view.
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
  */
 public class Main extends Application {
 	

@@ -14,15 +14,21 @@ import oxz.application.command.imp.PrintFileNameCommand;
 import oxz.application.command.imp.PrintFolderNameCommand;
 import oxz.application.command.imp.PrintPathCommand;
 
+/**
+ * This is the controller of the program, 
+ * generated with the model of our application
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
+ */
+
 public class Controller {
 	
 	private boolean autoRun;
 	private Model model;
-	private ArrayList<ICommand> commandsList; 
+	private ArrayList<ICommand> commandsList = new ArrayList<ICommand>(); 
 	
 	public Controller(Model model){
-		
-		this.commandsList = new ArrayList<ICommand>();
 		
 		this.commandsList.add(new PrintFileNameCommand());
 		this.commandsList.add(new PrintFolderNameCommand());
@@ -63,7 +69,7 @@ public class Controller {
 		*/
 		
 		this.model = model;
-		this.setRootPath(model.getRootPath());
+		this.setRootPath(model.getRootPath()); 
 	}
 	
 	public void setAutoRun(boolean flag){
@@ -87,11 +93,16 @@ public class Controller {
 		return this.model.getRootPath();
 	}
 	
+	/**
+	 * Set a file or folder to be the selected element, pass it to all the commands
+	 * if this.autoRun is true, execute all the commands
+	 * @param file the element to be used in command, can be a file or a folder
+	 */
 	public void setSelectedElement(File file){
 		
 		this.model.setSelectedElement(file);
 		for(ICommand c : commandsList) { // clear all results since the file has changed
-			c.setFile(file);
+			c.setFile(file); // used for load the file to the command, command will be disabled if the input is not valid
 		}
 		if(autoRun) {
 			for(ICommand c : commandsList) {

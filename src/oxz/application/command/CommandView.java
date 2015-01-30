@@ -7,8 +7,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
+
+/**
+ * The command view, extends HBox, contains a Button and a TextField
+ * 
+ * @author Yan Xu, Olivier Pinon, Chunxia Zhang
+ * @version 1.0
+ */
+
 public class CommandView extends HBox {
 		
+	/**
+	 * 
+	 * @param command view is constructed base on a command model
+	 */
 	public CommandView(ICommand command){
 		
 		// button to execute the comma
