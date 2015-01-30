@@ -11,7 +11,7 @@ import oxz.application.command.ICommand;
 public class Controller {
 	
 	private boolean autoRun;
-	private static Model model;
+	private Model model;
 	private ArrayList<ICommand> commandsList; 
 	
 	public Controller(Model model){
@@ -19,7 +19,7 @@ public class Controller {
 		this.commandsList = new ArrayList<ICommand>();
 		
 		// get the commands folder
-		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/Command/imp");
+		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
 		
 		if (concreteCommandFolder.isDirectory()){
 
@@ -36,7 +36,7 @@ public class Controller {
 					// cut the .class suffix in fileName
 					String commandName = fileName.substring(0, fileName.lastIndexOf("."));
 					// here need to be changed to load the correctly!  - Yan Xu
-					Class<?> aCommandClass = classLoader.loadClass("Command.imp."+commandName);
+					Class<?> aCommandClass = classLoader.loadClass("oxz.application.command.imp."+commandName);
 					System.out.println(commandName + " has been loaded");
 					// add the loaded command to the commandsList
 					this.commandsList.add((Command)aCommandClass.newInstance());
@@ -48,7 +48,7 @@ public class Controller {
 			
 		}
 		
-		Controller.model = model;
+		this.model = model;
 		this.setRootPath(model.getRootPath());
 	}
 	
@@ -57,7 +57,7 @@ public class Controller {
 	}
 	
 	public Model getModel(){
-		return Controller.model;
+		return this.model;
 	}
 	
 	public ArrayList<ICommand> getCommands(){
@@ -65,17 +65,17 @@ public class Controller {
 	}
 	
 	public void setRootPath(String path){
-		Controller.model.setRootPath(path);
+		this.model.setRootPath(path);
 		this.setSelectedElement(new File(path));
 	}
 	
 	public String getRootPath(){
-		return Controller.model.getRootPath();
+		return this.model.getRootPath();
 	}
 	
 	public void setSelectedElement(File file){
 		
-		Controller.model.setSelectedElement(file);
+		this.model.setSelectedElement(file);
 		for(ICommand c : commandsList) { // clear all results since the file has changed
 			c.setFile(file);
 		}
@@ -87,7 +87,7 @@ public class Controller {
 	}
 	
 	public File getSelectedElement(){
-		return Controller.model.getSelectedElement();
+		return this.model.getSelectedElement();
 	}
 	
 }

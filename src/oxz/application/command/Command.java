@@ -7,9 +7,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.property.StringPropertyBase;
-import javafx.beans.value.ObservableBooleanValue;
 
-public class Command implements ICommand {
+public abstract class Command implements ICommand {
 	
 	protected Object result;
 	final protected StringPropertyBase resultString = new SimpleStringProperty();

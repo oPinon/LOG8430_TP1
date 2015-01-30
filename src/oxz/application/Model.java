@@ -1,8 +1,9 @@
 package oxz.application;
 import java.io.File;
+import java.util.Observable;
 
 
-public class Model {
+public class Model extends Observable{
 	private String rootPath;
 	private File selectedElement;
 	private final static Model INSTANCE = new Model();
@@ -10,19 +11,15 @@ public class Model {
 	//Singleton
 	private Model(){}
 	
-    // default public constructor
-    public static Model getInstance() {
-        return INSTANCE;
-    }
-    
+    // getInstance method used for get the unique instance  
     public static Model getInstance(String rootPath) {
-    	INSTANCE.rootPath = rootPath;
-    	INSTANCE.setSelectedElement(new File(rootPath));
+    	INSTANCE.setRootPath(rootPath);
     	return INSTANCE;
     }
 	
 	public void setRootPath(String path){
 		this.rootPath = path;
+		this.setSelectedElement(new File(rootPath));
 	}
 	
 	public String getRootPath(){

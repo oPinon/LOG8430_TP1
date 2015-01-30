@@ -1,4 +1,4 @@
-package test;
+package oxz.application.test;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +13,7 @@ public class PrintFolderNameCommandTest {
 
 	@Test
 	public void testExecute(){
-		File eFile = new File(System.getProperty("user.dir") + "/src/Application/Main.java");
+		File eFile = new File(System.getProperty("user.dir") + "/src/oxz/application/Main.java");
 		Command c = new PrintFolderNameCommand();
 		c.setFile(eFile);
 		c.execute();
