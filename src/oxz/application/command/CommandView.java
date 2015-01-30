@@ -21,7 +21,7 @@ public class CommandView extends HBox {
 	 * 
 	 * @param command view is constructed base on a command 
 	 */
-	public CommandView(ICommand command){
+	public CommandView(final ICommand command){
 		
 		// button to execute the comma
 		Button executeButton = new Button(command.getName());

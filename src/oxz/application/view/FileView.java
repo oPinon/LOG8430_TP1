@@ -30,7 +30,7 @@ public class FileView extends VBox{
 	private boolean isOpened;
 	//private boolean isSelected;
 	
-	public FileView(Controller controller, File file, boolean isRoot) {
+	public FileView(final Controller controller, final File file, boolean isRoot) {
 				
 		HBox fileView = new HBox();
 		final VBox childrenView = new VBox();

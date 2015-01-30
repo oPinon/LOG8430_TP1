@@ -30,7 +30,7 @@ public class SelectionPartView extends VBox {
 	 * @param controller controller set itself to view as delegate
 	 */
 	
-	public SelectionPartView(Controller controller){
+	public SelectionPartView(final Controller controller){
 				
 		// a view of the file tree in a scrollPane
 		FileView fileView = new FileView(controller, new File(controller.getRootPath()), true);		

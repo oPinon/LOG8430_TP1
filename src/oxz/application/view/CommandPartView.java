@@ -28,7 +28,7 @@ public class CommandPartView extends VBox{
 	 * @param controller controller delegeted itself in view
 	 */
 	// view of the commands, with a Clear and an Autorun checkbox at the bottom
-	public CommandPartView(Controller controller){
+	public CommandPartView(final Controller controller){
 				
 		VBox commandsPart1 = new VBox(); // each command is a HBox with button on left, and text on right
 		
