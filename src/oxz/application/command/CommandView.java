@@ -1,6 +1,5 @@
 package oxz.application.command;
 
-import oxz.application.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -9,13 +8,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 public class CommandView extends HBox {
-	
-	private Button executeButton;
-	
-	public CommandView(Controller controller, ICommand command){
 		
-		// button to execute the command
-		executeButton = new Button(command.getName());
+	public CommandView(ICommand command){
+		
+		// button to execute the comma
+		Button executeButton = new Button(command.getName());
 		executeButton.disableProperty().bind(command.disabledProperty());
 		
 		// textField to display the result of the command
@@ -28,7 +25,7 @@ public class CommandView extends HBox {
 			public void handle(ActionEvent arg0) {
 				
 				// This might violate the MVC, need to be changed -- Yan Xu 2015-01-29
-				// add a CommandController class
+				// no time to change it today.
 				command.execute();
 			}
 		});

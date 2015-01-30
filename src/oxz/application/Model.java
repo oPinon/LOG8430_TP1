@@ -1,9 +1,7 @@
 package oxz.application;
 import java.io.File;
-import java.util.Observable;
 
-
-public class Model extends Observable{
+public class Model {
 	private String rootPath = "/";
 	private File selectedElement;
 	

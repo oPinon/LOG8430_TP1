@@ -17,11 +17,11 @@ public class PrintFolderNameCommandTest {
 		Command c = new PrintFolderNameCommand();
 		c.setFile(eFile);
 		c.execute();
-		//assertEquals(c.displayResult(), "Error");
+		assertEquals(c.resultStringProperty().get(), "");
 		
 		File eFolder = new File(System.getProperty("user.dir") + "/src");
 		c.setFile(eFolder);
 		c.execute();
-		//assertEquals(c.displayResult(), "Folder Name is: src");
+		assertEquals(c.resultStringProperty().get(), "Folder name is: src");
 	}
 }

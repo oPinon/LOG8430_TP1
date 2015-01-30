@@ -7,19 +7,15 @@ import javafx.scene.layout.Priority;
 
 
 public class View extends HBox{
-	
-	private Controller controller;
-	
+		
 	public View(Controller controller){
-		
-		this.controller = controller;
-		
+				
 		// View of all the commands, on the right side of the window
-		CommandPartView commandView = new CommandPartView(this.controller);
+		CommandPartView commandView = new CommandPartView(controller);
 		HBox.setHgrow(commandView, Priority.ALWAYS);
 		
 		// View of the file explorer, on the left side
-		SelectionPartView selectionView = new SelectionPartView(this.controller);
+		SelectionPartView selectionView = new SelectionPartView(controller);
 		
 		this.getChildren().addAll(selectionView, new Separator(), commandView);
 		this.setPadding(new Insets(10));

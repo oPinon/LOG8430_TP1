@@ -1,12 +1,18 @@
 package oxz.application;
 import java.io.File;
 import java.util.ArrayList;
+/*
+ * for dynamic loading use -- Yan Xu
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
 import oxz.application.command.Command;
+*/
 import oxz.application.command.ICommand;
+import oxz.application.command.imp.PrintFileNameCommand;
+import oxz.application.command.imp.PrintFolderNameCommand;
+import oxz.application.command.imp.PrintPathCommand;
 
 public class Controller {
 	
@@ -18,6 +24,12 @@ public class Controller {
 		
 		this.commandsList = new ArrayList<ICommand>();
 		
+		this.commandsList.add(new PrintFileNameCommand());
+		this.commandsList.add(new PrintFolderNameCommand());
+		this.commandsList.add(new PrintPathCommand());
+		
+		/*
+		 * Yan 2015-01-29, remove the unfinished dynamic loading, not asked this week
 		// get the commands folder
 		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
 		
@@ -46,7 +58,9 @@ public class Controller {
 				e1.printStackTrace();
 			}
 			
+			
 		}
+		*/
 		
 		this.model = model;
 		this.setRootPath(model.getRootPath());

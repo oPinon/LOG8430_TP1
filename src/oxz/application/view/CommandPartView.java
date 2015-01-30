@@ -15,19 +15,15 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class CommandPartView extends VBox{
-	
-	protected Controller controller;
-	
+		
 	// view of the commands, with a Clear and an Autorun checkbox at the bottom
 	public CommandPartView(Controller controller){
-		
-		this.controller = controller;
-		
+				
 		VBox commandsPart1 = new VBox(); // each command is a HBox with button on left, and text on right
 		
 		for (final ICommand command: controller.getCommands()){
 			
-			CommandView singleCommandView = new CommandView(this.controller, command);			
+			CommandView singleCommandView = new CommandView(command);			
 			
 			commandsPart1.getChildren().addAll(singleCommandView);
 		}

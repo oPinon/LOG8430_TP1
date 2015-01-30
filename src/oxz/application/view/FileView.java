@@ -21,12 +21,9 @@ public class FileView extends VBox{
 	
 	boolean isOpened;
 	boolean isSelected;
-	Controller controller;
 	
 	public FileView(Controller controller, File file, boolean isRoot) {
-		
-		this.controller = controller;
-		
+				
 		HBox fileView = new HBox();
 		final VBox childrenView = new VBox();
 		
