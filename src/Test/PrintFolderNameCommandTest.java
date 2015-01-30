@@ -7,7 +7,7 @@ import java.io.File;
 import org.junit.Test;
 
 import Command.Command;
-import Command.PrintFolderNameCommand;
+import Command.imp.PrintFolderNameCommand;
 
 public class PrintFolderNameCommandTest {
 

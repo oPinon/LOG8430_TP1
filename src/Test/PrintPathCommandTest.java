@@ -7,7 +7,7 @@ import java.io.File;
 import org.junit.Test;
 
 import Command.Command;
-import Command.PrintPathCommand;
+import Command.imp.PrintPathCommand;
 
 public class PrintPathCommandTest {
 	

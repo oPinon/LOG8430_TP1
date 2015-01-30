@@ -1,6 +1,8 @@
-package Command;
+package Command.imp;
 
 import java.io.File;
+
+import Command.Command;
 
 public class PrintPathCommand extends Command {
 

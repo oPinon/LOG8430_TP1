@@ -7,7 +7,7 @@ import java.io.File;
 import org.junit.Test;
 
 import Command.Command;
-import Command.PrintFileNameCommand;
+import Command.imp.PrintFileNameCommand;
 
 public class PrintFileNameCommandTest {
 
