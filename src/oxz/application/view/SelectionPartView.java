@@ -8,9 +8,11 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
@@ -50,12 +52,33 @@ public class SelectionPartView extends VBox {
                 if (file != null) {
                 	controller.setRootPath(file.getAbsolutePath());
                 	
-                	// here MVC may be violated, need to be changed --Yan Xu, 2015-01-29
                 	fileViewPane.setContent(new FileView(controller, new File(controller.getRootPath()), true));
                 }
 			}
 		});
 		
-		this.getChildren().addAll(fileViewPane, new Separator(), selectRootButton);
+		Button selectRootFileButton = new Button("Select a file");
+		selectRootFileButton.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				
+				// opens a directory chooser for the user to select the new root path
+				final Stage stage = new Stage();
+				final FileChooser fileChooser = new FileChooser();
+				File file = fileChooser.showOpenDialog(stage);
+                if (file != null) {
+                	controller.setRootPath(file.getAbsolutePath());
+                	
+                	fileViewPane.setContent(new FileView(controller, new File(controller.getRootPath()), true));
+                }
+			}
+		});
+		
+		HBox buttons = new HBox();
+		buttons.getChildren().addAll(selectRootButton, selectRootFileButton);
+		
+		this.getChildren().addAll(fileViewPane, 
+								new Separator(), 
+								buttons);
 	}
 }
