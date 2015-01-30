@@ -36,7 +36,7 @@ public class Controller {
 					String fileName = commands[i].getName(); 
 					// cut the .class suffix in fileName
 					String commandName = fileName.substring(0, fileName.lastIndexOf("."));
-					// here need to be changed to load the correctly! - Yan Xu
+					// here need to be changed to load the correctly!  - Yan Xu
 					Class<?> aCommandClass = classLoader.loadClass("Command.imp."+commandName);
 					System.out.println(commandName + " has been loaded");
 					// add the loaded command to the commandsList
