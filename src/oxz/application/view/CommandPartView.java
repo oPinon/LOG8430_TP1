@@ -1,26 +1,25 @@
 package oxz.application.view;
 
 import oxz.application.Controller;
+import oxz.application.command.CommandView;
 import oxz.application.command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class CommandView extends VBox{
+public class CommandPartView extends VBox{
 	
 	protected Controller controller;
 	
-	// view of the commands, with a Clear and an Autorun button at the bottom
-	public CommandView(Controller controller){
+	// view of the commands, with a Clear and an Autorun checkbox at the bottom
+	public CommandPartView(Controller controller){
 		
 		this.controller = controller;
 		
@@ -28,7 +27,7 @@ public class CommandView extends VBox{
 		
 		for (final ICommand command: controller.getCommands()){
 			
-			SingleCommandView singleCommandView = new SingleCommandView(this.controller, command);			
+			CommandView singleCommandView = new CommandView(this.controller, command);			
 			
 			commandsPart1.getChildren().addAll(singleCommandView);
 		}

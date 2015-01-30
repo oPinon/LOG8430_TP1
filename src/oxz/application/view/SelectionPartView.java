@@ -16,11 +16,11 @@ import javafx.stage.Stage;
 /*
  * Window with a file tree, and a button on the bottom to change the root
  */
-public class SelectionView extends VBox {
+public class SelectionPartView extends VBox {
 	
 	protected Controller controller;
 	
-	public SelectionView(Controller controller){
+	public SelectionPartView(Controller controller){
 		
 		this.controller = controller;
 		
@@ -33,7 +33,7 @@ public class SelectionView extends VBox {
 		// a button to change the root file
 		Button selectRootButton = new Button("Select a file or folder");
 		
-		final SelectionView self = this;
+		final SelectionPartView self = this;
 		selectRootButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {

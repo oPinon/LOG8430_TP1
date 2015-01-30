@@ -1,7 +1,6 @@
-package oxz.application.view;
+package oxz.application.command;
 
 import oxz.application.Controller;
-import oxz.application.command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -9,15 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-public class SingleCommandView extends HBox {
+public class CommandView extends HBox {
 	
-	private Controller controller;
-	private ICommand command;
 	private Button executeButton;
 	
-	public SingleCommandView(Controller controller, ICommand command){
-		this.controller = controller;
-		this.command = command;
+	public CommandView(Controller controller, ICommand command){
 		
 		// button to execute the command
 		executeButton = new Button(command.getName());
@@ -31,6 +26,9 @@ public class SingleCommandView extends HBox {
 		executeButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
+				
+				// This might violate the MVC, need to be changed -- Yan Xu 2015-01-29
+				// add a CommandController class
 				command.execute();
 			}
 		});

@@ -17,7 +17,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		Model model = Model.getInstance("/"); // creates a new model at the disk's root
+		//Model model = Model.getInstance("/"); Singleton removed
+		Model model = new Model();
 		Controller controller = new Controller(model);
 		View view = new View(controller);
     	

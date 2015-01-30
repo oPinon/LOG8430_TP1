@@ -4,8 +4,12 @@ import java.util.Observable;
 
 
 public class Model extends Observable{
-	private String rootPath;
+	private String rootPath = "/";
 	private File selectedElement;
+	
+	/*
+	 * remove the Singleton Pattern, it is not necessary here
+	 * Yan Xu 2015-01-29
 	private final static Model INSTANCE = new Model();
 	
 	//Singleton
@@ -16,6 +20,7 @@ public class Model extends Observable{
     	INSTANCE.setRootPath(rootPath);
     	return INSTANCE;
     }
+	*/
 	
 	public void setRootPath(String path){
 		this.rootPath = path;

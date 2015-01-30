@@ -15,11 +15,11 @@ public class View extends HBox{
 		this.controller = controller;
 		
 		// View of all the commands, on the right side of the window
-		CommandView commandView = new CommandView(this.controller);
+		CommandPartView commandView = new CommandPartView(this.controller);
 		HBox.setHgrow(commandView, Priority.ALWAYS);
 		
 		// View of the file explorer, on the left side
-		SelectionView selectionView = new SelectionView(this.controller);
+		SelectionPartView selectionView = new SelectionPartView(this.controller);
 		
 		this.getChildren().addAll(selectionView, new Separator(), commandView);
 		this.setPadding(new Insets(10));
