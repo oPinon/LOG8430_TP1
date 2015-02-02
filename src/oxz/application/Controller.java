@@ -11,11 +11,9 @@ import static java.nio.file.StandardWatchEventKinds.*;
 
 import java.util.ArrayList;
 
+import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import oxz.application.command.ICommand;
-import oxz.application.view.CommandPartView;
 import oxz.application.view.View;
 
 
@@ -176,8 +174,7 @@ public class Controller {
 				    //wait for key to be signaled
 				    WatchKey key;
 				    try {
-				    	System.out.println("wating key");
-				        key = watcher.take();
+				    	key = watcher.take();
 				    } catch (InterruptedException x) {
 				        return null;
 				    }
@@ -192,12 +189,15 @@ public class Controller {
 				        if (kind == OVERFLOW) {
 				            continue;
 				        }
-
-				        System.out.println(kind.toString());
 				        
 				    }
 				    Thread.sleep(500); // let the system time to update files
-				    controller.loadCommands();
+					Platform.runLater(new Runnable() { // runLater so it doesn't conflict with the UI
+				        @Override
+				        public void run() {
+				        	controller.loadCommands();
+				        }
+					});
 
 				    //Reset the key -- this step is critical if you want to receive
 				    //further watch events. If the key is no longer valid, the directory
