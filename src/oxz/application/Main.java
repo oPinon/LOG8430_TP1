@@ -1,6 +1,5 @@
 package oxz.application;
 
-import oxz.application.view.View;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,9 +23,9 @@ public class Main extends Application {
 		//Model model = Model.getInstance("/"); Singleton removed
 		Model model = new Model();
 		Controller controller = new Controller(model);
-		View view = new View(controller);
+		//View view = new View(controller);
     	
-		Scene scene = new Scene(view,800,600);
+		Scene scene = new Scene(controller.getView(),800,600);
 		
 		stage.setTitle("Main View");
         stage.setScene(scene);

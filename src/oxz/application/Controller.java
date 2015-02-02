@@ -36,6 +36,7 @@ public class Controller {
 		
 		this.model = model;
 		this.setRootPath(model.getRootPath()); 
+		this.view = new View(this);
 	}
 	
 	/**
@@ -134,6 +135,10 @@ public class Controller {
 	
 	public void setView(View view){
 		this.view = view;
+	}
+	
+	public View getView(){
+		return this.view;
 	}
 	
 }
