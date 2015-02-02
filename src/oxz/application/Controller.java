@@ -43,7 +43,7 @@ public class Controller {
 
 		//loadCommands(); loadClass when set the root path
 
-		concreteCommandFolder = new File(System.getProperty("user.dir") + "/src/oxz/application/command/imp");
+		concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
 		this.model = model;
 		this.setRootPath(model.getRootPath()); 
 		this.view = new View(this);
