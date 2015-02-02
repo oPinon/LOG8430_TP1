@@ -2,12 +2,12 @@ package oxz.application;
 import java.io.File;
 import java.util.ArrayList;
 
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import oxz.application.command.ICommand;
-/*
-import oxz.application.command.imp.PrintFileNameCommand;
-import oxz.application.command.imp.PrintFolderNameCommand;
-import oxz.application.command.imp.PrintPathCommand;
-*/
+import oxz.application.view.CommandPartView;
+import oxz.application.view.View;
+
 
 /**
  * This is the controller of the program, 
@@ -22,6 +22,7 @@ public class Controller {
 	private boolean autoRun;
 	private Model model;
 	private ArrayList<ICommand> commandsList = new ArrayList<ICommand>(); 
+	private View view;
 	
 	public Controller(Model model){
 		
@@ -31,7 +32,7 @@ public class Controller {
 		// this.commandsList.add(new PrintFileNameCommand());
 		// this.commandsList.add(new PrintFolderNameCommand());
 		
-		loadCommands();
+		//loadCommands(); loadClass when set the root path
 		
 		this.model = model;
 		this.setRootPath(model.getRootPath()); 
@@ -41,14 +42,17 @@ public class Controller {
 	 * This function used for load the commands' classes
 	 */
 	private void loadCommands(){
+		
+		System.out.println("reload commands");
+		
 		this.commandsList.clear();
 		
 		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/src/oxz/application/command/imp");
 		
 		if (concreteCommandFolder.isDirectory()){
 			
-			//MyClassLoader classLoader = new MyClassLoader(Controller.class.getClassLoader());
 			ClassLoader classLoader = Controller.class.getClassLoader();
+			
 			File[] commands = concreteCommandFolder.listFiles();
 			
 			for(int i=0; i<commands.length; i++){
@@ -56,6 +60,8 @@ public class Controller {
 				String className = fileName.substring(0, fileName.lastIndexOf("."));
 				
 				try {
+					System.out.println("load class: " + className);
+					
 					Class<?> commandClass = classLoader.loadClass("oxz.application.command.imp."+className);
 					ICommand aCommand = (ICommand) commandClass.newInstance();
 					this.commandsList.add(aCommand);
@@ -66,6 +72,14 @@ public class Controller {
 			
 			}
 			
+		}
+		
+		//regenerate the view
+		if (this.view != null){
+			this.view.getChildren().remove(2);
+			CommandPartView commandPartView = new CommandPartView(this);
+			HBox.setHgrow(commandPartView, Priority.ALWAYS);
+			this.view.getChildren().add(2, commandPartView);
 		}
 	}
 	
@@ -102,7 +116,9 @@ public class Controller {
 		loadCommands();
 		
 		this.model.setSelectedElement(file);
+		System.out.println("Selected element is: " + file.getName());
 		for(ICommand c : commandsList) { // clear all results since the file has changed
+			
 			c.setFile(file); // used for load the file to the command, command will be disabled if the input is not valid
 		}
 		if(autoRun) {
@@ -114,6 +130,10 @@ public class Controller {
 	
 	public File getSelectedElement(){
 		return this.model.getSelectedElement();
+	}
+	
+	public void setView(View view){
+		this.view = view;
 	}
 	
 }

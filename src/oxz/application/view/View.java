@@ -19,7 +19,9 @@ public class View extends HBox{
 	 * @param controller controller set itself to view as delegate
 	 */
 	public View(Controller controller){
-				
+		
+		controller.setView(this);
+		
 		// View of all the commands, on the right side of the window
 		CommandPartView commandView = new CommandPartView(controller);
 		HBox.setHgrow(commandView, Priority.ALWAYS);
