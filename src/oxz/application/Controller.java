@@ -1,7 +1,17 @@
 package oxz.application;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
+
+import static java.nio.file.StandardWatchEventKinds.*;
+
 import java.util.ArrayList;
 
+import javafx.concurrent.Task;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import oxz.application.command.ICommand;
@@ -39,6 +49,11 @@ public class Controller {
 		this.model = model;
 		this.setRootPath(model.getRootPath()); 
 		this.view = new View(this);
+		
+		Thread dirWatcher = new Thread(new DirectoryWatcher());
+		dirWatcher.start();
+		
+		/**/
 	}
 	
 	/**
@@ -143,6 +158,64 @@ public class Controller {
 	
 	public View getView(){
 		return this.view;
+	}
+	
+	private class DirectoryWatcher extends Task {
+		
+		@Override
+		public Object call() {
+			
+			try {
+				WatchService watcher = FileSystems.getDefault().newWatchService();
+				Path dir = concreteCommandFolder.toPath();
+				dir.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+				
+				while(true) {
+
+				    //wait for key to be signaled
+				    WatchKey key;
+				    try {
+				        key = watcher.take();
+				    } catch (InterruptedException x) {
+				        return null;
+				    }
+
+				    for (WatchEvent<?> event: key.pollEvents()) {
+				    	
+				        WatchEvent.Kind<?> kind = event.kind();
+
+				        //This key is registered only for ENTRY_CREATE events,
+				        //but an OVERFLOW event can occur regardless if events are
+				        //lost or discarded.
+				        if (kind == OVERFLOW) {
+				            continue;
+				        }
+
+				        System.out.println(kind.toString());
+				        
+				    }
+				    
+				    loadCommands();
+
+				    //Reset the key -- this step is critical if you want to receive
+				    //further watch events. If the key is no longer valid, the directory
+				    //is inaccessible so exit the loop.
+				    boolean valid = key.reset();
+				    if (!valid) {
+				        break;
+				    }
+				}
+				
+				
+			} catch (IOException e) {
+				System.err.println("couldn't watch folder "+concreteCommandFolder.getName()+" for events");
+				e.printStackTrace();
+			}
+
+			System.out.println("finished");
+			return null;
+		}
+		
 	}
 	
 }
