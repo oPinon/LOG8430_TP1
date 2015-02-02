@@ -27,7 +27,7 @@ public class Main extends Application {
     	
 		Scene scene = new Scene(controller.getView(),800,600);
 		
-		stage.setTitle("Main View");
+		stage.setTitle(controller.concreteCommandFolder.getAbsolutePath());
         stage.setScene(scene);
         stage.show();
 	}

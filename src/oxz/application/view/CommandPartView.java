@@ -52,6 +52,7 @@ public class CommandPartView extends VBox{
 		});
 		
 		final CheckBox autorunCheckbox = new CheckBox("AutoRun");
+		autorunCheckbox.setSelected(controller.getAutoRun());
 		autorunCheckbox.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override
 		    public void handle(ActionEvent event) {

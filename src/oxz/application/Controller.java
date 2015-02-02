@@ -23,6 +23,7 @@ public class Controller {
 	private Model model;
 	private ArrayList<ICommand> commandsList = new ArrayList<ICommand>(); 
 	private View view;
+	public final File concreteCommandFolder;
 	
 	public Controller(Model model){
 		
@@ -34,6 +35,7 @@ public class Controller {
 		
 		//loadCommands(); loadClass when set the root path
 		
+		concreteCommandFolder = new File(System.getProperty("user.dir") + "/src/oxz/application/command/imp");
 		this.model = model;
 		this.setRootPath(model.getRootPath()); 
 		this.view = new View(this);
@@ -47,8 +49,6 @@ public class Controller {
 		System.out.println("reload commands");
 		
 		this.commandsList.clear();
-		
-		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/src/oxz/application/command/imp");
 		
 		if (concreteCommandFolder.isDirectory()){
 			
@@ -86,6 +86,10 @@ public class Controller {
 	
 	public void setAutoRun(boolean flag){
 		this.autoRun = flag;
+	}
+	
+	public boolean getAutoRun(){
+		return this.autoRun;
 	}
 	
 	public Model getModel(){
