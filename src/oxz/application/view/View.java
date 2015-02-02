@@ -14,6 +14,8 @@ import javafx.scene.layout.Priority;
 
 public class View extends HBox{
 	
+	private CommandPartView commandView;
+	
 	/**
 	 * 
 	 * @param controller controller set itself to view as delegate
@@ -23,7 +25,7 @@ public class View extends HBox{
 		controller.setView(this);
 		
 		// View of all the commands, on the right side of the window
-		CommandPartView commandView = new CommandPartView(controller);
+		commandView = new CommandPartView(controller);
 		HBox.setHgrow(commandView, Priority.ALWAYS);
 		
 		// View of the file explorer, on the left side
@@ -31,5 +33,9 @@ public class View extends HBox{
 		
 		this.getChildren().addAll(selectionView, new Separator(), commandView);
 		this.setPadding(new Insets(10));
+	}
+	
+	public void updateCommands() {
+		commandView.updateCommands();
 	}
 }

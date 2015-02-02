@@ -50,10 +50,9 @@ public class Controller {
 		this.setRootPath(model.getRootPath()); 
 		this.view = new View(this);
 		
-		Thread dirWatcher = new Thread(new DirectoryWatcher());
+		Thread dirWatcher = new Thread(new DirectoryWatcher(this));
 		dirWatcher.start();
 		
-		/**/
 	}
 	
 	/**
@@ -91,11 +90,8 @@ public class Controller {
 		}
 		
 		//regenerate the view
-		if (this.view != null){
-			this.view.getChildren().remove(2);
-			CommandPartView commandPartView = new CommandPartView(this);
-			HBox.setHgrow(commandPartView, Priority.ALWAYS);
-			this.view.getChildren().add(2, commandPartView);
+		if (view != null){
+			view.updateCommands();
 		}
 	}
 	
@@ -162,6 +158,11 @@ public class Controller {
 	
 	private class DirectoryWatcher extends Task {
 		
+		private Controller controller;
+		public DirectoryWatcher(Controller controller) {
+			this.controller = controller;
+		}
+		
 		@Override
 		public Object call() {
 			
@@ -175,6 +176,7 @@ public class Controller {
 				    //wait for key to be signaled
 				    WatchKey key;
 				    try {
+				    	System.out.println("wating key");
 				        key = watcher.take();
 				    } catch (InterruptedException x) {
 				        return null;
@@ -194,8 +196,8 @@ public class Controller {
 				        System.out.println(kind.toString());
 				        
 				    }
-				    
-				    loadCommands();
+				    Thread.sleep(500); // let the system time to update files
+				    controller.loadCommands();
 
 				    //Reset the key -- this step is critical if you want to receive
 				    //further watch events. If the key is no longer valid, the directory
@@ -207,7 +209,7 @@ public class Controller {
 				}
 				
 				
-			} catch (IOException e) {
+			} catch (IOException | InterruptedException e) {
 				System.err.println("couldn't watch folder "+concreteCommandFolder.getName()+" for events");
 				e.printStackTrace();
 			}

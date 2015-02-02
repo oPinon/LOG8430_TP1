@@ -23,14 +23,19 @@ import javafx.scene.layout.VBox;
 
 public class CommandPartView extends VBox{
 	
+	private VBox commandsPart1;
+	private Controller controller;
+	
 	/**
 	 * 
 	 * @param controller controller delegeted itself in view
 	 */
 	// view of the commands, with a Clear and an Autorun checkbox at the bottom
 	public CommandPartView(final Controller controller){
+		
+		this.controller = controller;
 				
-		VBox commandsPart1 = new VBox(); // each command is a HBox with button on left, and text on right
+		commandsPart1 = new VBox(); // each command is a HBox with button on left, and text on right
 		
 		for (final ICommand command: controller.getCommands()){
 			
@@ -68,6 +73,16 @@ public class CommandPartView extends VBox{
 		VBox.setVgrow(scrollPanePart1, Priority.ALWAYS);
 		this.getChildren().addAll( scrollPanePart1, new Separator(), commandsPart2);
 
+	}
+	
+	public void updateCommands() {
+		commandsPart1.getChildren().clear();
+		for (final ICommand command: controller.getCommands()){
+			
+			CommandView singleCommandView = new CommandView(command);			
+			
+			commandsPart1.getChildren().addAll(singleCommandView);
+		}
 	}
 
 }
