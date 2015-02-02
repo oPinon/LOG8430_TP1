@@ -1,18 +1,13 @@
 package oxz.application;
 import java.io.File;
 import java.util.ArrayList;
-/*
- * for dynamic loading use -- Yan Xu
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 
-import oxz.application.command.Command;
-*/
 import oxz.application.command.ICommand;
+/*
 import oxz.application.command.imp.PrintFileNameCommand;
 import oxz.application.command.imp.PrintFolderNameCommand;
 import oxz.application.command.imp.PrintPathCommand;
+*/
 
 /**
  * This is the controller of the program, 
@@ -30,46 +25,43 @@ public class Controller {
 	
 	public Controller(Model model){
 		
-		this.commandsList.add(new PrintFileNameCommand());
-		this.commandsList.add(new PrintFolderNameCommand());
-		this.commandsList.add(new PrintPathCommand());
-		
-		/*
-		 * Yan 2015-01-29, remove the unfinished dynamic loading, not asked this week
 		// get the commands folder
-		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
 		
-		if (concreteCommandFolder.isDirectory()){
-
-			// Create a loader to load the commands classes
-			URLClassLoader classLoader;
-			
-			try {
-				classLoader = new URLClassLoader(new URL[]{concreteCommandFolder.toURI().toURL()});
-				// get the lists of commands
-				File[] commands = concreteCommandFolder.listFiles();
-				
-				for(int i=0; i<commands.length; i++){
-					String fileName = commands[i].getName(); 
-					// cut the .class suffix in fileName
-					String commandName = fileName.substring(0, fileName.lastIndexOf("."));
-					// here need to be changed to load the correctly!  - Yan Xu
-					Class<?> aCommandClass = classLoader.loadClass("oxz.application.command.imp."+commandName);
-					System.out.println(commandName + " has been loaded");
-					// add the loaded command to the commandsList
-					this.commandsList.add((Command)aCommandClass.newInstance());
-				}
-				
-			} catch ( MalformedURLException | ClassNotFoundException | InstantiationException | IllegalAccessException e1) {
-				e1.printStackTrace();
-			}
-			
-			
-		}
-		*/
-		
+		loadCommands();
 		this.model = model;
 		this.setRootPath(model.getRootPath()); 
+	}
+	
+	/**
+	 * This function used for load the commands' classes
+	 */
+	private void loadCommands(){
+		this.commandsList.clear();
+		
+		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/src/oxz/application/command/imp");
+		
+		if (concreteCommandFolder.isDirectory()){
+			
+			//MyClassLoader classLoader = new MyClassLoader(Controller.class.getClassLoader());
+			ClassLoader classLoader = Controller.class.getClassLoader();
+			File[] commands = concreteCommandFolder.listFiles();
+			
+			for(int i=0; i<commands.length; i++){
+				String fileName = commands[i].getName();
+				String className = fileName.substring(0, fileName.lastIndexOf("."));
+				
+				try {
+					Class<?> commandClass = classLoader.loadClass("oxz.application.command.imp."+className);
+					ICommand aCommand = (ICommand) commandClass.newInstance();
+					this.commandsList.add(aCommand);
+					
+				} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+					e.printStackTrace();
+				} 
+			
+			}
+			
+		}
 	}
 	
 	public void setAutoRun(boolean flag){
@@ -96,9 +88,13 @@ public class Controller {
 	/**
 	 * Set a file or folder to be the selected element, pass it to all the commands
 	 * if this.autoRun is true, execute all the commands
+	 * This function will call loadCommands to reload commands classes
 	 * @param file the element to be used in command, can be a file or a folder
 	 */
 	public void setSelectedElement(File file){
+		
+		//reload the commands' classes
+		loadCommands();
 		
 		this.model.setSelectedElement(file);
 		for(ICommand c : commandsList) { // clear all results since the file has changed
