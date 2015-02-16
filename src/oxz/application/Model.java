@@ -11,8 +11,8 @@ import java.io.File;
  */
 
 public class Model {
-	private String rootPath = "/";
-	private File selectedElement = new File("/");
+	private String rootPath = ".";
+	private File selectedElement = new File(".");
 	
 	/*
 	 * remove the Singleton Pattern, it is not necessary here
