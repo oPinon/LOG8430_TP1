@@ -27,8 +27,8 @@ public class CommandPartView extends VBox{
 	private Controller controller;
 	
 	/**
-	 * 
-	 * @param controller controller delegeted itself in view
+	 * CommandPartView Constructor
+	 * @param controller controller delegated itself in view
 	 */
 	// view of the commands, with a Clear and an Autorun checkbox at the bottom
 	public CommandPartView(final Controller controller){
@@ -76,6 +76,9 @@ public class CommandPartView extends VBox{
 
 	}
 	
+	/**
+	 * if the Commands' list is modified by user, need to call this function to update the view
+	 */
 	public void updateCommands() {
 		commandsPart1.getChildren().clear();
 		for (final ICommand command: controller.getCommands()){

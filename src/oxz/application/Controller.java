@@ -96,7 +96,13 @@ public class Controller {
 			view.updateCommands();
 		}
 	}
-
+	
+	/**
+	 * If the autoRun attribute is set to true, the commands will be executed after the file is chosen
+	 * default is False
+	 * 
+	 * @param flag
+	 */
 	public void setAutoRun(boolean flag){
 		this.autoRun = flag;
 	}
@@ -109,10 +115,19 @@ public class Controller {
 		return this.model;
 	}
 
+	/**
+	 * This method return a list of the commands in Controller
+	 * @return commandsList
+	 */
 	public ArrayList<ICommand> getCommands(){
 		return this.commandsList;
 	}
 
+	/**
+	 * set the rootPath attribute
+	 * Once the root path is set, the selectedElement is set to be the same as the rootPath
+	 * @param path
+	 */
 	public void setRootPath(String path){
 		this.model.setRootPath(path);
 		this.setSelectedElement(new File(path));

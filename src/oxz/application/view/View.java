@@ -17,7 +17,7 @@ public class View extends HBox{
 	private CommandPartView commandView;
 	
 	/**
-	 * 
+	 * The application View Constructor
 	 * @param controller controller set itself to view as delegate
 	 */
 	public View(Controller controller){

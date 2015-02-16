@@ -20,7 +20,9 @@ public class ControllerTest {
       this.controller = new Controller(model);
     }
 	
-	/* Can't run this text because buttons can't be initiallized, unknown reason
+	/* Can't run this text because buttons can't be initialized, unknown reason
+	 * need to be fixed
+	 * 
 	@Test
 	public void testCommandsList() {
 		

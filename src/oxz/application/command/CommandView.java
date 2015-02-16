@@ -18,8 +18,8 @@ import javafx.scene.layout.Priority;
 public class CommandView extends HBox {
 		
 	/**
-	 * 
-	 * @param command view is constructed base on a command 
+	 * The CommandView is constructed base on a command 
+	 * @param command 
 	 */
 	public CommandView(final ICommand command){
 		

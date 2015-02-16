@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 public class SelectionPartView extends VBox {
 		
 	/**
-	 * 
+	 * SelectionPartView Constructor
 	 * @param controller controller set itself to view as delegate
 	 */
 	

@@ -3,8 +3,9 @@ import java.io.File;
 
 /**
  * This is the controller of the program, 
- * generated with the model of our application
- * 
+ * generated with the model of our application, 
+ * It has two attributes : String rootPath, represent the root path which should used to build the document tree in view
+ * 						   File selectedElement, use to store the file(or folder) can be executed
  * @author Yan Xu, Olivier Pinon, Chunxia Zhang
  * @version 1.0
  */

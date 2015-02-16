@@ -30,6 +30,12 @@ public class FileView extends VBox{
 	private boolean isOpened;
 	//private boolean isSelected;
 	
+	/**
+	 * FileView constructor
+	 * @param controller controller delegated itself in view
+	 * @param file the file need to be presented
+	 * @param if the File file passed is the root directory of the system, need to be set True, otherwise set to False
+	 */
 	public FileView(final Controller controller, final File file, boolean isRoot) {
 				
 		HBox fileView = new HBox();
