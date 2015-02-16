@@ -20,10 +20,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 
-		//Model model = Model.getInstance("/"); Singleton removed
-		Model model = new Model();
-		Controller controller = new Controller(model);
-		//View view = new View(controller);
+		Controller controller = new Controller();
     	
 		Scene scene = new Scene(controller.getView(),800,600);
 		

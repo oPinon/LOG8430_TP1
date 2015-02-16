@@ -28,13 +28,14 @@ import oxz.application.view.View;
 public class Controller {
 
 	private boolean autoRun;
-	private Model model;
+	
+	private String rootPath = ".";
+	
 	private ArrayList<ICommand> commandsList = new ArrayList<ICommand>(); 
 	private View view;
 	public final File concreteCommandFolder;
 
-	public Controller(Model model){
-
+	public Controller(){
 		// Original method to load the commands' classes
 		// replaced by dynamic loading --Yan 2015-02-01
 		// this.commandsList.add(new PrintPathCommand());
@@ -42,13 +43,13 @@ public class Controller {
 		// this.commandsList.add(new PrintFolderNameCommand());
 
 		//loadCommands(); loadClass when set the root path
-
+		
+		
 		concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
-		this.model = model;
-		this.setRootPath(model.getRootPath()); 
 		this.view = new View(this);
 
 		loadCommands();
+		this.setSelectedElement(new File("."));
 
 		Thread dirWatcher = new Thread(new DirectoryWatcher(this));
 		dirWatcher.start();
@@ -78,7 +79,6 @@ public class Controller {
 					Class<?> commandClass = classLoader.loadClass("oxz.application.command.imp."+className);
 					Object aCommand = commandClass.newInstance();
 					ICommand command = (ICommand) aCommand;
-					command.setFile(model.getSelectedElement());
 					if(aCommand instanceof ICommand) {
 						this.commandsList.add( command );
 					}
@@ -111,10 +111,6 @@ public class Controller {
 		return this.autoRun;
 	}
 
-	public Model getModel(){
-		return this.model;
-	}
-
 	/**
 	 * This method return a list of the commands in Controller
 	 * @return commandsList
@@ -129,12 +125,13 @@ public class Controller {
 	 * @param path
 	 */
 	public void setRootPath(String path){
-		this.model.setRootPath(path);
+		this.rootPath = path;
+		//this.model.setRootPath(path);
 		this.setSelectedElement(new File(path));
 	}
 
 	public String getRootPath(){
-		return this.model.getRootPath();
+		return this.rootPath;
 	}
 
 	/**
@@ -145,7 +142,7 @@ public class Controller {
 	 */
 	public void setSelectedElement(File file){
 
-		this.model.setSelectedElement(file);
+		//this.model.setSelectedElement(file);
 		System.out.println("Selected element is: " + file.getName());
 		for(ICommand c : commandsList) { // clear all results since the file has changed
 
@@ -157,10 +154,7 @@ public class Controller {
 			}
 		}
 	}
-
-	public File getSelectedElement(){
-		return this.model.getSelectedElement();
-	}
+	
 
 	public void setView(View view){
 		this.view = view;
