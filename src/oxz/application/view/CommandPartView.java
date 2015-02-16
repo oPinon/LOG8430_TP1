@@ -45,7 +45,8 @@ public class CommandPartView extends VBox{
 		}
 		
 		HBox commandsPart2 = new HBox(); // Clear button and Autorun checkbox
-		commandsPart2.setAlignment(Pos.CENTER_RIGHT); commandsPart2.setSpacing(10);
+		commandsPart2.setAlignment(Pos.CENTER_RIGHT); 
+		commandsPart2.setSpacing(10);
 		Button clearButton = new Button("Clear");
 		clearButton.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
