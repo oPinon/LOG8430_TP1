@@ -1,5 +1,6 @@
-package oxz.application.command;
+package oxz.application.view;
 
+import oxz.application.command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

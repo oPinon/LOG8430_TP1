@@ -1,5 +1,7 @@
 package oxz.application;
 
+import java.io.File;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,8 +21,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-
-		Controller controller = new Controller();
+		
+		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
+		Controller controller = new Controller(concreteCommandFolder);
     	
 		Scene scene = new Scene(controller.getView(),800,600);
 		

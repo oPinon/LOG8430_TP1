@@ -35,7 +35,7 @@ public class Controller {
 	private View view;
 	public final File concreteCommandFolder;
 
-	public Controller(){
+	public Controller(File concreteCommandFolder){
 		// Original method to load the commands' classes
 		// replaced by dynamic loading --Yan 2015-02-01
 		// this.commandsList.add(new PrintPathCommand());
@@ -44,8 +44,7 @@ public class Controller {
 
 		//loadCommands(); loadClass when set the root path
 		
-		
-		concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
+		this.concreteCommandFolder = concreteCommandFolder;
 		this.view = new View(this);
 
 		loadCommands();
