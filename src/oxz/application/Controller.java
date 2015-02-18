@@ -35,13 +35,6 @@ public class Controller {
 	public final File concreteCommandFolder;
 
 	public Controller(File concreteCommandFolder){
-		// Original method to load the commands' classes
-		// replaced by dynamic loading --Yan 2015-02-01
-		// this.commandsList.add(new PrintPathCommand());
-		// this.commandsList.add(new PrintFileNameCommand());
-		// this.commandsList.add(new PrintFolderNameCommand());
-
-		//loadCommands(); loadClass when set the root path
 		
 		this.concreteCommandFolder = concreteCommandFolder;
 
