@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import oxz.application.Controller;
-import oxz.application.Model;
 import oxz.application.command.imp.PrintFileNameCommand;
 
 public class ControllerTest {
@@ -16,8 +15,7 @@ public class ControllerTest {
 	
 	@Before 
 	public void initialize() {
-      this.model = new Model();
-      this.controller = new Controller(model);
+      this.controller = new Controller();
     }
 	
 	/* Can't run this text because buttons can't be initialized, unknown reason
