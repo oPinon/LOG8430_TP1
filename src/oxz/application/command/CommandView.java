@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-
 /**
  * The command view, extends HBox, contains a Button and a TextField
  * 
@@ -16,22 +15,23 @@ import javafx.scene.layout.Priority;
  */
 
 public class CommandView extends HBox {
-		
+
 	/**
-	 * The CommandView is constructed base on a command 
-	 * @param command 
+	 * The CommandView is constructed based on a command
+	 * 
+	 * @param command
 	 */
-	public CommandView(final ICommand command){
-		
-		// button to execute the comma
+	public CommandView(final ICommand command) {
+
+		// button to execute the command
 		Button executeButton = new Button(command.getName());
 		executeButton.disableProperty().bind(command.disabledProperty());
-		
+
 		// textField to display the result of the command
 		final TextField commandResult = new TextField("");
 		commandResult.textProperty().bind(command.resultStringProperty());
 		HBox.setHgrow(commandResult, Priority.ALWAYS);
-		
+
 		executeButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
@@ -39,7 +39,7 @@ public class CommandView extends HBox {
 				command.execute();
 			}
 		});
-		
+
 		this.getChildren().addAll(executeButton, commandResult);
 	}
 }
