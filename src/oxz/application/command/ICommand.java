@@ -13,32 +13,32 @@ import javafx.beans.property.StringProperty;
  */
 
 public interface ICommand {
-	
+
 	public String getName();
-	
+
 	/**
-	 * It is use to double the result of command to view
+	 * A string property to observe for the command's result
 	 */
 	public StringProperty resultStringProperty();
-	
+
 	/**
-	 * It is use to double the disabled status of command to view
+	 * A boolean property to observe for the command's enabled/disabled state
 	 */
 	public BooleanProperty disabledProperty();
-	
+
 	/**
-	 * This method use to clear its resultStringProperty()
+	 * This method clears the result
 	 */
 	public void clear();
-	
+
 	/**
 	 * Set the target file (The Receiver in Command Pattern) to the command
 	 */
 	public void setFile(File f);
-	
+
 	/**
 	 * Use to execute the command (on its target file)
 	 */
 	public void execute();
-	
+
 }

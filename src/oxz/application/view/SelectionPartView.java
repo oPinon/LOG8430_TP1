@@ -15,70 +15,78 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-
 /**
- * extends VBox, contains a view with a file tree, and a button on the bottom to change the root path
+ * extends VBox, contains a view with a file tree, and a button on the bottom to
+ * change the root path
  * 
  * @author Yan Xu, Olivier Pinon, Chunxia Zhang
  * @version 1.0
  */
 
 public class SelectionPartView extends VBox {
-		
+
 	/**
-	 * SelectionPartView Constructor
-	 * @param controller controller set itself to view as delegate
+	 * SelectionPartView Constructor Contains a file tree view and two buttons
+	 * that open file-choosers to select the rootPath
+	 * 
+	 * @param controller
+	 *            controller set itself to view as delegate
 	 */
-	
-	public SelectionPartView(final Controller controller){
-				
+
+	public SelectionPartView(final Controller controller) {
+
 		// a view of the file tree in a scrollPane
-		FileView fileView = new FileView(controller, new File(controller.getRootPath()), true);		
-		final ScrollPane fileViewPane = new ScrollPane(); fileViewPane.setContent(fileView);
-		fileViewPane.setFitToWidth(true); fileViewPane.setFitToHeight(true);
+		FileView fileView = new FileView(controller, new File(
+				controller.getRootPath()), true);
+		final ScrollPane fileViewPane = new ScrollPane();
+		fileViewPane.setContent(fileView);
+		fileViewPane.setFitToWidth(true);
+		fileViewPane.setFitToHeight(true);
 		VBox.setVgrow(fileViewPane, Priority.ALWAYS);
-		
+
 		// a button to change the root file
 		Button selectRootButton = new Button("Select a folder");
-		
-		selectRootButton.setOnAction(new EventHandler<ActionEvent>(){
+
+		selectRootButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				
-				// opens a directory chooser for the user to select the new root path
+
+				// opens a directory chooser for the user to select the new root
+				// path
 				final Stage stage = new Stage();
 				final DirectoryChooser directoryChooser = new DirectoryChooser();
 				File file = directoryChooser.showDialog(stage);
-                if (file != null) {
-                	controller.setRootPath(file.getAbsolutePath());
-                	
-                	fileViewPane.setContent(new FileView(controller, new File(controller.getRootPath()), true));
-                }
+				if (file != null) {
+					controller.setRootPath(file.getAbsolutePath());
+
+					fileViewPane.setContent(new FileView(controller, new File(
+							controller.getRootPath()), true));
+				}
 			}
 		});
-		
+
 		Button selectRootFileButton = new Button("Select a file");
-		selectRootFileButton.setOnAction(new EventHandler<ActionEvent>(){
+		selectRootFileButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent arg0) {
-				
-				// opens a directory chooser for the user to select the new root path
+
+				// opens a directory chooser for the user to select the new root
+				// path
 				final Stage stage = new Stage();
 				final FileChooser fileChooser = new FileChooser();
 				File file = fileChooser.showOpenDialog(stage);
-                if (file != null) {
-                	controller.setRootPath(file.getAbsolutePath());
-                	
-                	fileViewPane.setContent(new FileView(controller, new File(controller.getRootPath()), true));
-                }
+				if (file != null) {
+					controller.setRootPath(file.getAbsolutePath());
+
+					fileViewPane.setContent(new FileView(controller, new File(
+							controller.getRootPath()), true));
+				}
 			}
 		});
-		
+
 		HBox buttons = new HBox();
 		buttons.getChildren().addAll(selectRootButton, selectRootFileButton);
-		
-		this.getChildren().addAll(fileViewPane, 
-								new Separator(), 
-								buttons);
+
+		this.getChildren().addAll(fileViewPane, new Separator(), buttons);
 	}
 }
