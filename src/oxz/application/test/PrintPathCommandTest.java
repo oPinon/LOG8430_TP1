@@ -12,6 +12,12 @@ import oxz.application.command.imp.PrintPathCommand;
 public class PrintPathCommandTest {
 
 	@Test
+	public void testGetName(){
+		Command c = new PrintPathCommand();
+		assertEquals(c.getName(), "PrintPathCommand");
+	}
+	
+	@Test
 	public void testExecute() {
 		File eFile = new File(System.getProperty("user.dir")
 				+ "/src/oxz/application/Main.java");

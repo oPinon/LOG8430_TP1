@@ -38,8 +38,6 @@ public class Controller {
 		
 		this.concreteCommandFolder = concreteCommandFolder;
 
-		this.view = new View(this);
-
 		loadCommands();
 		this.setSelectedElement(new File("."));
 

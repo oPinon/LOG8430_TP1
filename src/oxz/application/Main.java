@@ -2,6 +2,7 @@ package oxz.application;
 
 import java.io.File;
 
+import oxz.application.view.View;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,8 +25,9 @@ public class Main extends Application {
 		
 		File concreteCommandFolder = new File(System.getProperty("user.dir") + "/bin/oxz/application/command/imp");
 		Controller controller = new Controller(concreteCommandFolder);
+		View view = new View(controller);
     	
-		Scene scene = new Scene(controller.getView(),800,600);
+		Scene scene = new Scene(view,800,600);
 		
 		stage.setTitle(controller.concreteCommandFolder.getAbsolutePath());
 		stage.setScene(scene);

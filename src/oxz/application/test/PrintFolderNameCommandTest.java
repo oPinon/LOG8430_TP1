@@ -12,6 +12,12 @@ import oxz.application.command.imp.PrintFolderNameCommand;
 public class PrintFolderNameCommandTest {
 
 	@Test
+	public void testGetName(){
+		Command c = new PrintFolderNameCommand();
+		assertEquals(c.getName(), "PrintFolderNameCommand");
+	}
+	
+	@Test
 	public void testExecute() {
 		File eFile = new File(System.getProperty("user.dir")
 				+ "/src/oxz/application/Main.java");
