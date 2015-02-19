@@ -95,7 +95,7 @@ public class Controller {
 	 * If the autoRun attribute is set to true, the commands will be executed
 	 * after the file is chosen (default is False)
 	 * 
-	 * @param flag
+	 * @param flag set true to auto run commands
 	 */
 	public void setAutoRun(boolean flag) {
 		this.autoRun = flag;
@@ -118,7 +118,7 @@ public class Controller {
 	 * sets the rootPath attribute once the root path is set also sets the
 	 * selected element to be the rootPath's file
 	 * 
-	 * @param path
+	 * @param path the root path of the file tree in view
 	 */
 	public void setRootPath(String path) {
 		this.rootPath = path;

@@ -17,12 +17,12 @@ public interface ICommand {
 	public String getName();
 
 	/**
-	 * A string property to observe for the command's result
+	 * @return A string property to observe for the command's result
 	 */
 	public StringProperty resultStringProperty();
 
 	/**
-	 * A boolean property to observe for the command's enabled/disabled state
+	 * @return A boolean property to observe for the command's enabled/disabled state
 	 */
 	public BooleanProperty disabledProperty();
 
@@ -32,7 +32,7 @@ public interface ICommand {
 	public void clear();
 
 	/**
-	 * Set the target file (The Receiver in Command Pattern) to the command
+	 * @param f Set the target file (The Receiver in Command Pattern) to the command
 	 */
 	public void setFile(File f);
 

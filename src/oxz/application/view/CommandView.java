@@ -20,7 +20,7 @@ public class CommandView extends HBox {
 	/**
 	 * The CommandView is constructed based on a command
 	 * 
-	 * @param command
+	 * @param command the command use for generate the view
 	 */
 	public CommandView(final ICommand command) {
 
