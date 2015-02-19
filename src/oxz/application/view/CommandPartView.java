@@ -1,7 +1,6 @@
 package oxz.application.view;
 
 import oxz.application.Controller;
-import oxz.application.command.CommandView;
 import oxz.application.command.ICommand;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
